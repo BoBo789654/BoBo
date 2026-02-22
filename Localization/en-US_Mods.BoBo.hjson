@@ -1,0 +1,568 @@
+Configs: {
+	ConcertoConfig: {
+		ShowEnemyCounter: {
+			Tooltip: 是否在敌人头顶显示协奏曲计数器B
+			Label: 显示敌人计数器(B)
+		}
+
+		ShowPlayerCounter: {
+			Tooltip: 是否在玩家头顶显示协奏曲计数器A
+			Label: 显示玩家计数器(A)
+		}
+
+		DisplayName: Concerto Config
+	}
+
+	AccessorySlotConfig: {
+		VisibleSlots: {
+			Tooltip: 饰品槽位设置
+			Label: Visible Slots
+		}
+
+		Headers.饰品槽位设置: 饰品槽位设置 Header
+		DisplayName: Accessory Slot Config
+	}
+
+	FierceExplosiveConfig: {
+		DisplayName: 激烈炸弹配置
+
+		Width: {
+			Label: 左右宽度
+			Tooltip: 炸弹清除区域的宽度（鼠标左右各一半）
+		}
+
+		PlatformSpacing: {
+			Label: 平台间隔
+			Tooltip: 平台之间的垂直间隔
+		}
+
+		ClearHeight: {
+			Label: 清除高度
+			Tooltip: 从鼠标向上清除的高度
+		}
+
+		SlopeTypeSlide: {
+			Tooltip: 设置平台斜坡形态
+			Label: 斜坡类型
+		}
+
+		SlopeTypeSlider: {
+			Tooltip: 设置平台斜坡形态
+			Label: 斜坡类型
+		}
+	}
+
+	SlopeTypeEnum: {
+		Tooltip: ""
+
+		Solid: {
+			Label: 实心物块
+			Tooltip: ""
+		}
+
+		SolidDownLeft: {
+			Label: 左上斜坡
+			Tooltip: ""
+		}
+
+		SolidDownRight: {
+			Label: 右上斜坡
+			Tooltip: ""
+		}
+
+		SolidUpLeft: {
+			Label: 左下斜坡
+			Tooltip: ""
+		}
+
+		SolidUpRight: {
+			Label: 右下斜坡
+			Tooltip: ""
+		}
+	}
+
+	EvilCupConfig: {
+		DisplayName: Evil Cup Config
+
+		CurrentMinions: {
+			Label: 当前可召唤数量
+			Tooltip: 牺牲召唤栏 = 最大召唤栏 - 此值
+		}
+
+		SacrificedMinionSlots: {
+			Label: 牺牲的召唤栏数
+			Tooltip: 实际扣除的召唤栏数量
+		}
+
+		ShowGhostMarksHint: {
+			Label: 显示游魂标记提示
+			Tooltip: 是否每3秒显示当前游魂标记层数
+		}
+	}
+
+	VastWaveFishingRodConfig: {
+		DisplayName: Vast Wave Fishing Rod Config
+
+		CustomFishingPower: {
+			Label: 自定义渔力
+			Tooltip: 设置钓鱼竿的渔力值 (0-500)
+		}
+
+		BobberCount: {
+			Label: 鱼线条数
+			Tooltip: 设置同时发射的鱼线数量 (0-300)
+		}
+
+		ConsumeBait: {
+			Label: 消耗鱼饵
+			Tooltip: 是否消耗鱼饵
+		}
+	}
+}
+
+Projectiles: {
+	Tail.DisplayName: Tail
+	Head.DisplayName: Head
+	Body.DisplayName: Body
+	longMinion.DisplayName: long Minion
+	TerrorArrow2.DisplayName: Terror Arrow2
+	TerrorArrow.DisplayName: Terror Arrow
+	XianJian.DisplayName: Xian Jian
+	ReapingScytheProjectile.DisplayName: Reaping Scythe Projectile
+	ExplosionProj2.DisplayName: Explosion Proj2
+	ExplosionProj.DisplayName: Explosion Proj
+	DarkStarProj.DisplayName: Dark Star Proj
+	VastWaveBobber.DisplayName: Vast Wave Bobber
+	BubbleShield.DisplayName: Bubble Shield
+	BubbleBurst.DisplayName: Bubble Burst
+	MagicalCircleProj.DisplayName: Magical Circle Proj
+	ThunderAccProj.DisplayName: Thunder Acc Proj
+	FierceExplosiveProjectile.DisplayName: Fierce Explosive Projectile
+	VenomSplash.DisplayName: Venom Splash
+	ToxicSplash.DisplayName: Toxic Splash
+	WormRay.DisplayName: Worm Ray
+	WarningLine.DisplayName: Warning Line
+	BatA.DisplayName: Bat A
+	BatB.DisplayName: Bat B
+	BatC.DisplayName: Bat C
+	BulletAProj.DisplayName: Bullet A Proj
+}
+
+Prefixes: {
+	Melodious: {
+		DisplayName: Melodious
+		AdditionalTooltip: Mods.BoBo.Prefixes.Melodious.AdditionalTooltip
+	}
+
+	Tooltip: Mods.BoBo.Prefixes.Tooltip
+}
+
+NPCs: {
+	PumpkingHands2.DisplayName: Pumpking Hands2
+	PumpkingHands.DisplayName: Pumpking Hands
+
+	EvilPumpking: {
+		DisplayName: Evil Pumpking
+		BossFightName: Mods.BoBo.NPCs.EvilPumpking.BossFightName
+	}
+
+	EvilWormTail.DisplayName: Evil Worm Tail
+	EvilWormHead.DisplayName: Evil Worm Head
+	EvilWormBody.DisplayName: Evil Worm Body
+}
+
+Items: {
+	SubworldEnteringItem: {
+		Tooltip: ""
+		DisplayName: Subworld Entering Item
+	}
+
+	RuneUpgrader: {
+		Tooltip: ""
+		DisplayName: Rune Upgrader
+	}
+
+	Runes1: {
+		Tooltip: ""
+		DisplayName: Runes1
+	}
+
+	Minionlong: {
+		Tooltip: ""
+		DisplayName: Minionlong
+	}
+
+	TerrorBow: {
+		Tooltip: ""
+		DisplayName: Terror Bow
+	}
+
+	Explosion: {
+		Tooltip: ""
+		DisplayName: Explosion
+	}
+
+	DarkStar: {
+		Tooltip: ""
+		DisplayName: Dark Star
+	}
+
+	VastWaveFishingRod: {
+		Tooltip: ""
+		DisplayName: Vast Wave Fishing Rod
+	}
+
+	CreateStructure: {
+		Tooltip: ""
+		DisplayName: Create Structure
+	}
+
+	TestSword: {
+		Tooltip: ""
+		DisplayName: Test Sword
+	}
+
+	ReapingScythe: {
+		Tooltip: ""
+		DisplayName: Reaping Scythe
+	}
+
+	JianXian: {
+		Tooltip: ""
+		DisplayName: Jian Xian
+	}
+
+	BoBoQuestFish1: {
+		Tooltip: ""
+		DisplayName: Bo Bo Quest Fish1
+	}
+
+	StarfruitItem: {
+		Tooltip: ""
+		DisplayName: Starfruit Item
+	}
+
+	PepperItem: {
+		Tooltip: ""
+		DisplayName: Pepper Item
+	}
+
+	FishingCrate1: {
+		Tooltip: ""
+		DisplayName: Fishing Crate1
+	}
+
+	EvilPumpkin: {
+		Tooltip: ""
+		DisplayName: Evil Pumpkin
+	}
+
+	Teleporter: {
+		Tooltip: ""
+		DisplayName: Teleporter
+	}
+
+	SummonInformation: {
+		Tooltip: ""
+		DisplayName: Summon Information
+	}
+
+	ElementalAmulet: {
+		Tooltip: ""
+		DisplayName: Elemental Amulet
+	}
+
+	Probability: {
+		Tooltip: ""
+		DisplayName: Probability
+	}
+
+	LifeQuartzNecklace: {
+		Tooltip: ""
+		DisplayName: Life Quartz Necklace
+	}
+
+	BubbleAcc: {
+		Tooltip: ""
+		DisplayName: Bubble Acc
+	}
+
+	Card_9: {
+		Tooltip: ""
+		DisplayName: Card_9
+	}
+
+	Card_8: {
+		Tooltip: ""
+		DisplayName: Card_8
+	}
+
+	Card_7: {
+		Tooltip: ""
+		DisplayName: Card_7
+	}
+
+	Card_6: {
+		Tooltip: ""
+		DisplayName: Card_6
+	}
+
+	Card_5: {
+		Tooltip: ""
+		DisplayName: Card_5
+	}
+
+	Card_4: {
+		Tooltip: ""
+		DisplayName: Card_4
+	}
+
+	Card_3: {
+		Tooltip: ""
+		DisplayName: Card_3
+	}
+
+	Card_28: {
+		Tooltip: ""
+		DisplayName: Card_28
+	}
+
+	Card_27: {
+		Tooltip: ""
+		DisplayName: Card_27
+	}
+
+	Card_26: {
+		Tooltip: ""
+		DisplayName: Card_26
+	}
+
+	Card_25: {
+		Tooltip: ""
+		DisplayName: Card_25
+	}
+
+	Card_24: {
+		Tooltip: ""
+		DisplayName: Card_24
+	}
+
+	Card_23: {
+		Tooltip: ""
+		DisplayName: Card_23
+	}
+
+	Card_22: {
+		Tooltip: ""
+		DisplayName: Card_22
+	}
+
+	Card_21: {
+		Tooltip: ""
+		DisplayName: Card_21
+	}
+
+	Card_20: {
+		Tooltip: ""
+		DisplayName: Card_20
+	}
+
+	Card_2: {
+		Tooltip: ""
+		DisplayName: Card_2
+	}
+
+	Card_19: {
+		Tooltip: ""
+		DisplayName: Card_19
+	}
+
+	Card_18: {
+		Tooltip: ""
+		DisplayName: Card_18
+	}
+
+	Card_17: {
+		Tooltip: ""
+		DisplayName: Card_17
+	}
+
+	Card_16: {
+		Tooltip: ""
+		DisplayName: Card_16
+	}
+
+	Card_15: {
+		Tooltip: ""
+		DisplayName: Card_15
+	}
+
+	Card_14: {
+		Tooltip: ""
+		DisplayName: Card_14
+	}
+
+	Card_13: {
+		Tooltip: ""
+		DisplayName: Card_13
+	}
+
+	Card_12: {
+		Tooltip: ""
+		DisplayName: Card_12
+	}
+
+	Card_11: {
+		Tooltip: ""
+		DisplayName: Card_11
+	}
+
+	Card_10: {
+		Tooltip: ""
+		DisplayName: Card_10
+	}
+
+	Card_1: {
+		Tooltip: ""
+		DisplayName: Card_1
+	}
+
+	MagicalCircle: {
+		DisplayName: Magical Circle
+		Tooltip: ""
+	}
+
+	DeerJade: {
+		DisplayName: Deer Jade
+		Tooltip: ""
+	}
+
+	BronzeBell: {
+		DisplayName: Bronze Bell
+		Tooltip: ""
+	}
+
+	HoohMirrorAcc: {
+		DisplayName: Hooh Mirror Acc
+		Tooltip: ""
+	}
+
+	LoongAxe: {
+		DisplayName: Loong Axe
+		Tooltip: ""
+	}
+
+	EvilCup: {
+		DisplayName: Evil Cup
+		Tooltip: ""
+	}
+
+	FierceExplosive: {
+		DisplayName: Fierce Explosive
+		Tooltip: ""
+	}
+
+	GuQin: {
+		Tooltip: ""
+		DisplayName: Gu Qin
+	}
+
+	WoJianJiWoDe: {
+		DisplayName: Wo Jian Ji Wo De
+		Tooltip: ""
+	}
+
+	EvilBait: {
+		Tooltip: ""
+		DisplayName: Evil Bait
+	}
+
+	ResetScroll: {
+		DisplayName: Reset Scroll
+		Tooltip: ""
+	}
+
+	SkillPoint: {
+		DisplayName: Skill Point
+		Tooltip: ""
+	}
+
+	RainbowShotgun: {
+		Tooltip: ""
+		DisplayName: Rainbow Shotgun
+	}
+
+	BatSummoningStaffA: {
+		DisplayName: Bat Summoning Staff A
+		Tooltip: ""
+	}
+
+	BatSummoningStaffB: {
+		DisplayName: Bat Summoning Staff B
+		Tooltip: ""
+	}
+
+	BatSummoningStaffC: {
+		DisplayName: Bat Summoning Staff C
+		Tooltip: ""
+	}
+
+	BulletA: {
+		Tooltip: ""
+		DisplayName: Bullet A
+	}
+}
+
+Buffs: {
+	longMinionBuff: {
+		Description: Mods.BoBo.Buffs.longMinionBuff.Description
+		DisplayName: long Minion Buff
+	}
+
+	BubbleBuff: {
+		Description: Mods.BoBo.Buffs.BubbleBuff.Description
+		DisplayName: Bubble Buff
+	}
+
+	LifeQuartzNecklaceBuff: {
+		DisplayName: Life Quartz Necklace Buff
+		Description: Mods.BoBo.Buffs.LifeQuartzNecklaceBuff.Description
+	}
+
+	MagicalCircleBuff: {
+		DisplayName: Magical Circle Buff
+		Description: Mods.BoBo.Buffs.MagicalCircleBuff.Description
+	}
+
+	DeerJadeDamageBuff: {
+		DisplayName: Deer Jade Damage Buff
+		Description: Mods.BoBo.Buffs.DeerJadeDamageBuff.Description
+	}
+
+	BatSummoningBuffA: {
+		DisplayName: Bat Summoning Buff A
+		Description: Mods.BoBo.Buffs.BatSummoningBuffA.Description
+	}
+
+	BatSummoningBuffB: {
+		DisplayName: Bat Summoning Buff B
+		Description: Mods.BoBo.Buffs.BatSummoningBuffB.Description
+	}
+
+	BatSummoningBuffC: {
+		DisplayName: Bat Summoning Buff C
+		Description: Mods.BoBo.Buffs.BatSummoningBuffC.Description
+	}
+}
+
+DamageClasses.ConcertoDamageClass.DisplayName: Concerto Damage Class
+
+InfoDisplays: {
+	SummonInfoDisplay: {
+		NoMinions: Mods.BoBo.InfoDisplays.SummonInfoDisplay.NoMinions
+		CurrentMinions: Mods.BoBo.InfoDisplays.SummonInfoDisplay.CurrentMinions
+		DisplayName: Summon Info Display
+	}
+}
+
+Keybinds.技能树面板.DisplayName: 技能树面板

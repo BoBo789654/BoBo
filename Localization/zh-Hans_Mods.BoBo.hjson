@@ -1,0 +1,716 @@
+Configs: {
+	ConcertoConfig: {
+		ShowEnemyCounter: {
+			Tooltip: 是否在敌人头顶显示协奏曲计数器B
+			Label: 显示敌人计数器(B)
+		}
+
+		ShowPlayerCounter: {
+			Tooltip: 是否在玩家头顶显示协奏曲计数器A
+			Label: 显示玩家计数器(A)
+		}
+
+		DisplayName: 协奏伤害设置
+	}
+
+	AccessorySlotConfig: {
+		VisibleSlots: {
+			Tooltip: 饰品槽位设置
+			Label: 可视栏位
+		}
+
+		Headers.饰品槽位设置: 饰品槽位设置
+		DisplayName: 饰品槽位设置
+	}
+
+	FierceExplosiveConfig: {
+		DisplayName: 激烈炸弹配置
+
+		Width: {
+			Label: 左右宽度
+			Tooltip: 炸弹清除区域的宽度（鼠标左右各一半）
+		}
+
+		PlatformSpacing: {
+			Label: 平台间隔
+			Tooltip: 平台之间的垂直间隔
+		}
+
+		ClearHeight: {
+			Label: 清除高度
+			Tooltip: 从鼠标点向上清除的高度
+		}
+
+		SlopeTypeSlide: {
+			// Tooltip: 设置平台斜坡形态
+			// Label: 斜坡类型
+		}
+
+		SlopeTypeSlider: {
+			Tooltip: 设置平台斜坡形态
+			Label: 斜坡类型
+		}
+	}
+
+	SlopeTypeEnum: {
+		Tooltip: ""
+
+		Solid: {
+			Label: 实心物块
+			Tooltip: ""
+		}
+
+		SolidDownLeft: {
+			Label: 左上斜坡
+			Tooltip: ""
+		}
+
+		SolidDownRight: {
+			Label: 右上斜坡
+			Tooltip: ""
+		}
+
+		SolidUpLeft: {
+			Label: 左下斜坡
+			Tooltip: ""
+		}
+
+		SolidUpRight: {
+			Label: 右下斜坡
+			Tooltip: ""
+		}
+	}
+
+	EvilCupConfig: {
+		DisplayName: 牺牲召唤栏
+
+		CurrentMinions: {
+			Label: 当前可召唤数量
+			Tooltip: 牺牲召唤栏 = 最大召唤栏 - 此值
+		}
+
+		SacrificedMinionSlots: {
+			Label: 牺牲的召唤栏数
+			Tooltip: 实际扣除的召唤栏数量
+		}
+
+		ShowGhostMarksHint: {
+			Label: 显示游魂标记提示
+			Tooltip: 是否每3秒显示当前游魂标记层数
+		}
+	}
+
+	VastWaveFishingRodConfig: {
+		DisplayName: 波浪钓竿
+
+		CustomFishingPower: {
+			Label: 自定义渔力
+			Tooltip: 设置钓鱼竿的渔力值 (0-500)
+		}
+
+		BobberCount: {
+			Label: 鱼线条数
+			Tooltip: 设置同时发射的鱼线数量 (0-300)
+		}
+
+		ConsumeBait: {
+			Label: 消耗鱼饵（没做好）
+			Tooltip: 是否消耗鱼饵（没做好）
+		}
+	}
+}
+
+Projectiles: {
+	Tail.DisplayName: Tail❎❎❎
+	Head.DisplayName: Head☠️ ☠️ ☠️
+	Body.DisplayName: Body✅✅✅
+	longMinion.DisplayName: long Minion░ ░ ░ ░ ░ ░ ░
+	TerrorArrow2.DisplayName: Terror Arrow2
+	TerrorArrow.DisplayName: Terror Arrow
+	XianJian.DisplayName: Xian Jian
+	ReapingScytheProjectile.DisplayName: Reaping Scythe Projectile
+	ExplosionProj2.DisplayName: Explosion Proj2
+	ExplosionProj.DisplayName: Explosion Proj
+	DarkStarProj.DisplayName: Dark Star Proj
+	VastWaveBobber.DisplayName: Vast Wave Bobber
+	BubbleShield.DisplayName: Bubble Shield
+	BubbleBurst.DisplayName: Bubble Burst
+	MagicalCircleProj.DisplayName: Magical Circle Proj
+	ThunderAccProj.DisplayName: Thunder Acc Proj
+	FierceExplosiveProjectile.DisplayName: Fierce Explosive Projectile
+	VenomSplash.DisplayName: Venom Splash
+	ToxicSplash.DisplayName: Toxic Splash
+	WormRay.DisplayName: Worm Ray
+	WarningLine.DisplayName: Warning Line
+	BatA.DisplayName: Bat A
+	BatB.DisplayName: Bat B
+	BatC.DisplayName: Bat C
+	// BulletAProj.DisplayName: Bullet A Proj
+}
+
+Prefixes: {
+	Melodious: {
+		DisplayName: 悠扬
+		AdditionalTooltip: 悠扬
+	}
+
+	Tooltip: BoBo词缀
+}
+
+NPCs: {
+	PumpkingHands2.DisplayName: 邪恶南瓜手
+	PumpkingHands.DisplayName: 邪恶南瓜手
+
+	EvilPumpking: {
+		DisplayName: 邪恶南瓜
+		BossFightName: 邪恶南瓜
+	}
+
+	EvilWormTail.DisplayName: 邪恶蠕虫
+	EvilWormHead.DisplayName: 邪恶蠕虫
+	EvilWormBody.DisplayName: 邪恶蠕虫
+}
+
+Items: {
+	SubworldEnteringItem: {
+		Tooltip: ""
+		DisplayName: Subworld Entering Item
+	}
+
+	RuneUpgrader: {
+		Tooltip: 改变符文框的材质，试验品，符文系统实际无效果
+		DisplayName: 符文升级石
+	}
+
+	Runes1: {
+		Tooltip: 可装备至符文框，试验品，符文系统实际无效果
+		DisplayName: 符文1
+	}
+
+	Minionlong: {
+		Tooltip: 召唤腐化之龙，类似于星尘之龙
+		DisplayName: 腐化之龙
+	}
+
+	TerrorBow: {
+		Tooltip: 从身后的空间射出箭向敌人射击
+		DisplayName: 恐怖弓
+	}
+
+	Explosion: {
+		Tooltip: 爆炸的魔法
+		DisplayName: Explosion
+	}
+
+	DarkStar: {
+		Tooltip: 这把法杖还没做出来
+		DisplayName: 暗星
+	}
+
+	VastWaveFishingRod: {
+		Tooltip: 好多好多条线
+		DisplayName: 波浪钓竿
+	}
+
+	CreateStructure: {
+		Tooltip: 创造一个定义的结构，会破坏地形、墙面
+		DisplayName: 创造结构
+	}
+
+	TestSword: {
+		Tooltip: 模组创建的时候顺带的
+		DisplayName: 测试剑
+	}
+
+	ReapingScythe: {
+		Tooltip: 收割镰刀是挥舞连续攻击武器，共四段动作，带有暗影粒子的效果
+		DisplayName: 收割镰刀
+	}
+
+	JianXian: {
+		Tooltip:
+			'''
+			剑仙的剑
+			击中敌人后生成四把剑悬于敌人头顶，蓄力后追踪敌人
+			'''
+		DisplayName: 剑仙
+	}
+
+	BoBoQuestFish1: {
+		Tooltip: ""
+		DisplayName: 反重力鱼
+	}
+
+	StarfruitItem: {
+		Tooltip:
+			'''
+			从鹈鹕镇送来的，星露谷的农民种的
+			吃一个+20MP上限，只能在吃完魔力水晶后使用
+			'''
+		DisplayName: 杨桃
+	}
+
+	PepperItem: {
+		Tooltip:
+			'''
+			从鹈鹕镇送来的，星露谷的农民种的
+			吃一个+20HP上限，只能在吃完生命果后使用
+			'''
+		DisplayName: 辣椒
+	}
+
+	FishingCrate1: {
+		Tooltip: 宝匣的一种，里面全是矿石
+		DisplayName: 矿石宝匣
+	}
+
+	EvilPumpkin: {
+		Tooltip: 召唤邪恶南瓜
+		DisplayName: 邪恶南瓜
+	}
+
+	Teleporter: {
+		Tooltip:
+			'''
+			[c/FFD700:★][c/DAA520:☆☆☆☆]
+			受伤则随机传送
+			'''
+		DisplayName: 随机传送器
+	}
+
+	SummonInformation: {
+		Tooltip: 获取已使用的召唤栏位数量
+		DisplayName: 召唤栏信息器
+	}
+
+	ElementalAmulet: {
+		Tooltip:
+			'''
+			[c/FFD700:★★★★][c/DAA520:☆]
+			根据环境提供不同增益：
+			[c/8A2BE2:♈♉♊♋♌♍♎♏♐♑♒♓]
+			[i:497] [c/00FFFF:海洋&水中&雨中→移速+10%｜加速度+8%｜飞行加速度+6%☔]
+			[i:3794] [c/D2691E:沙漠→防御+10%｜沙暴中防御额外+10%⚑]
+			[i:331] [c/32CD32:丛林→生命上限+20%⚜]
+			[i:3109] [c/2E8B57:黑夜&地底→强照明范围(绿光)⚞⚟]
+			[i:320] [c/A9A9A9:天空→伤害减免+25%✈]
+			[i:154] [c/800080:地牢→暴击率+12%♕]
+			[i:68][i:1330] [c/FF0000:邪恶之地→33%概率吸血5点☕]
+			[i:183] [c/FF69B4:蘑菇地→攻速+70%✌]
+			[i:3086][i:3081] [c/808080:花岗岩&大理石→生命上限+300☙]
+			[i:117] [c/FF4500:陨石坑→伤害+100%✊]
+			[i:593] [c/8B0000:雪原→攻击附加着火、狱炎]｜[c/ADD8E6:玩家免疫霜冻、冻伤❄]
+			[i:173] [c/ADD8E6:地狱→攻击附加霜冻、冻伤]｜[c/8B0000:玩家免疫着火、狱炎☀]
+			根据职业提供不同增益：
+			[i:3457] [c/DA70D6:法师→魔力回复+160｜魔力上限+160☘]
+			[i:3458] [c/FFA500:战士→击退效果+80%⤴]
+			[i:3456] [c/7FFFD4:射手→80%概率不消耗弹药｜无限飞行时间☉]
+			[i:3459] [c/40E0D0:召唤师→生命恢复+50❤]
+			'''
+		DisplayName: 元素护身符
+	}
+
+	Probability: {
+		Tooltip:
+			'''
+			[c/FFD700:★★][c/DAA520:☆☆☆]
+			[c/C61B40:✨造成伤害时，50%概率可以增加50%造成的伤害✨]
+			[c/00BFFF:✨受到伤害时，50%概率可以减少50%受到的伤害✨]
+			'''
+		DisplayName: 概率项链
+	}
+
+	LifeQuartzNecklace: {
+		Tooltip:
+			'''
+			[c/FFD700:★★★★][c/DAA520:☆]
+			[c/FF4500:♥][c/FF4500:获得红盾，上限100，+5护盾/s]
+			[c/87CEFA:♥][c/87CEFA:获得蓝盾，上限100，-1护盾/s，每造成1000伤害获得1护盾]
+			[c/BBFFFF:◒][c/BBFFFF:两种护盾被破坏时][c/FF4500:补偿][c/BBFFFF:本次损失护盾点数的][c/FF4500:血量][c/BBFFFF:给玩家]
+			[c/00FF7F:✿][c/00FF7F:复活技：玩家受到致命伤害抵挡该次伤害，并给予][c/FF4500:7秒无敌][c/00FF7F:✿]
+			[c/00FF7F:✿][c/FF4500:恢复][c/00FF7F:该次伤害][c/FF4500:200%的血量][c/00FF7F:，复活有5分钟冷却][c/00FF7F:✿]
+			'''
+		DisplayName: 生命石英项链
+	}
+
+	BubbleAcc: {
+		Tooltip:
+			'''
+			[c/FFD700:★★★][c/DAA520:☆☆]
+			[c/00FFFF:防御技：生成1个泡泡盾，受伤就破碎，5秒后再次生效，击退敌人，]
+			[c/00FFFF:回复20%最大生命值的血量，获得泡泡盾BUFF]
+			'''
+		DisplayName: 泡泡盾
+	}
+
+	Card_9: {
+		Tooltip: 卡牌：史莱姆皇后
+		DisplayName: 卡牌：史莱姆皇后
+	}
+
+	Card_8: {
+		Tooltip: 卡牌：血肉墙
+		DisplayName: 卡牌：血肉墙
+	}
+
+	Card_7: {
+		Tooltip: 卡牌：鹿角怪
+		DisplayName: 卡牌：鹿角怪
+	}
+
+	Card_6: {
+		Tooltip: 卡牌：骷髅王
+		DisplayName: 卡牌：骷髅王
+	}
+
+	Card_5: {
+		Tooltip: 卡牌：蜂王
+		DisplayName: 卡牌：蜂王
+	}
+
+	Card_4: {
+		Tooltip: 卡牌：克苏鲁之脑
+		DisplayName: 卡牌：克苏鲁之脑
+	}
+
+	Card_3: {
+		Tooltip: 放置于背包的时候，每张+1召唤上限
+		DisplayName: 卡牌：世界吞噬怪
+	}
+
+	Card_28: {
+		Tooltip: 卡牌：日食
+		DisplayName: 卡牌：日食
+	}
+
+	Card_27: {
+		Tooltip: 卡牌：金字塔
+		DisplayName: 卡牌：金字塔
+	}
+
+	Card_26: {
+		Tooltip: 卡牌：巫师
+		DisplayName: 卡牌：巫师
+	}
+
+	Card_25: {
+		Tooltip: 卡牌：困难模式
+		DisplayName: 卡牌：困难模式
+	}
+
+	Card_24: {
+		Tooltip: 卡牌：染血女神
+		DisplayName: 卡牌：染血女神
+	}
+
+	Card_23: {
+		Tooltip: 卡牌：宁芙
+		DisplayName: 卡牌：宁芙
+	}
+
+	Card_22: {
+		Tooltip: 卡牌：鸟妖
+		DisplayName: 卡牌：鸟妖
+	}
+
+	Card_21: {
+		Tooltip: 卡牌：水母
+		DisplayName: 卡牌：水母
+	}
+
+	Card_20: {
+		Tooltip: 卡牌：蠕虫
+		DisplayName: 卡牌：蠕虫
+	}
+
+	Card_2: {
+		Tooltip: 放置于背包的时候，每张+20HP魔力
+		DisplayName: 卡牌：克苏鲁之眼
+	}
+
+	Card_19: {
+		Tooltip: 卡牌：恶魔眼
+		DisplayName: 卡牌：恶魔眼
+	}
+
+	Card_18: {
+		Tooltip: 卡牌：史莱姆
+		DisplayName: 卡牌：史莱姆
+	}
+
+	Card_17: {
+		Tooltip: 卡牌：月亮领主
+		DisplayName: 卡牌：月亮领主
+	}
+
+	Card_16: {
+		Tooltip: 卡牌：拜月教徒
+		DisplayName: 卡牌：拜月教徒
+	}
+
+	Card_15: {
+		Tooltip: 卡牌：猪龙鱼公爵
+		DisplayName: 卡牌：猪龙鱼公爵
+	}
+
+	Card_14: {
+		Tooltip: 卡牌：石巨人
+		DisplayName: 卡牌：石巨人
+	}
+
+	Card_13: {
+		Tooltip: 卡牌：世纪之花
+		DisplayName: 卡牌：世纪之花
+	}
+
+	Card_12: {
+		Tooltip: 卡牌：机械骷髅王
+		DisplayName: 卡牌：机械骷髅王
+	}
+
+	Card_11: {
+		Tooltip: 卡牌：毁灭者
+		DisplayName: 卡牌：毁灭者
+	}
+
+	Card_10: {
+		Tooltip: 卡牌：双子魔眼
+		DisplayName: 卡牌：双子魔眼
+	}
+
+	Card_1: {
+		Tooltip:
+			'''
+			可以获得所有的增益站和药水的BUFF
+			放置于背包的时候，每张+20HP上限
+			'''
+		DisplayName: 卡牌：史莱姆王
+	}
+
+	MagicalCircle: {
+		DisplayName: 魔法帽
+		Tooltip: 装备后召唤一个魔法阵
+	}
+
+	DeerJade: {
+		DisplayName: 灵珏·鹿
+		Tooltip:
+			'''
+			[c/FFD700:★★★][c/DAA520:☆☆]
+			[c/FF6347:血最大生命值减半，自然生命恢复为0，掉落的红心回复量为0，药水疾病debuff将一直存在]
+			[c/00BFFF:防御技：受伤1次获得1层标记，标记层数无上限]
+			[c/32CD32:获得20%的减伤基础，每层标记可以额外增加5%的减伤，上限50%]
+			[c/FF8C00:复活技：首次受到致命伤害后复活并无敌3秒，复活冷却180秒]
+			[c/FFD700:标记不消失，不再增加伤害减免，每层标记增加5%远程伤害、5%远程暴击]
+			[c/FF69B4:治愈技：每45秒治愈当前最大生命值的50%血量]
+			[c/FF69B4:治愈后，若此时生命值大于75%，则增加25%伤害，若小于75%，额外回复20生命值]
+			'''
+	}
+
+	BronzeBell: {
+		DisplayName: 青铜钟·狐
+		Tooltip:
+			'''
+			[c/FFD700:★★★][c/DAA520:☆☆]
+			[c/BA55D3:⚡「雷电的力量」⚡]
+			[c/A03CFF:■ 雷之尾] [c/A03CFF:受击时获得1条][c/5D3FD3:雷之尾⚡][c/808080:（上限9层）]
+			[c/9370DB:■ 雷净化] [c/9370DB:免疫所有原版异常状态与减益，受伤恢复5倍][c/5D3FD3:⚡层数][c/9370DB:血量]
+			[c/CCCCFF:每层效果：][c/CCCCFF:+3 防御] [c/CCCCFF:+5% 魔法伤害] [c/CCCCFF:+5% 魔法暴击]
+			[c/DA70D6:■ 雷之盾：][c/DA70D6:大于150的单次伤害，会将过量的减伤数倍，并会随][c/5D3FD3:⚡层数][c/DA70D6:增加效果增加]
+			[c/FF69B4:■ 雷治愈：][c/FF69B4:魔法伤害5%用于恢复魔力]
+			[c/C3B1E1:■ 雷锁链：][c/5D3FD3:每层⚡][c/C3B1E1:增加0.5%概率触发][c/C3B1E1:额外闪电攻击]
+			'''
+	}
+
+	HoohMirrorAcc: {
+		DisplayName: 阴阳镜·凤
+		Tooltip:
+			'''
+			[c/FFD700:★★★][c/DAA520:☆☆]
+			[c/FF4500:获得3次复活机会，每次复活会+25%近战伤害、+25%近战暴击、-10%减伤、-10%防御]
+			[c/FF4500:每次复活恢复的血量随当前复活阶段造成的伤害增加]
+			'''
+	}
+
+	LoongAxe: {
+		DisplayName: 戕钺·龙
+		Tooltip:
+			'''
+			[c/FFD700:★★★][c/DAA520:☆☆]
+			[c/E34234:首次生命值降低至30%以下时，直接回满血，冷却为250秒]
+			[c/FFD700:造成的近战伤害受到（+1%/10最大魔力值与回魔）]
+			[c/E34234:每使用近战武器时，消耗魔力，即使魔力耗尽也不影响武器使用]
+			[c/FFD700:消耗魔力为玩家充能，每100魔力：+10%减伤、-10%防御]
+			[c/E34234:魔法伤害加成同时给近战伤害加成]
+			'''
+	}
+
+	EvilCup: {
+		DisplayName: 游魂金杯·狮
+		Tooltip:
+			'''
+			[c/FFD700:★★★★][c/DAA520:☆]
+			[c/D4AF37:牺牲召唤栏时，获得等量“牺牲”标记，上限100层]
+			[c/FF4500:自身造成伤害时，获得“游魂”标记，该标记会衰减]
+			[c/2C3E50:每个攻击一个目标为自己增加1点游魂标记]
+			[c/CD7F32:免疫所有异常和状态]
+			[c/2C3E50:每层游魂层数增加30点伤害]
+			[c/E67E22:增幅技：]
+			[c/8B0000:自身防御增加30 + 牺牲召唤栏 * 20，最高70]
+			[c/8B0000:自身伤害增加20 + 牺牲召唤栏 * 3]
+			[c/8B0000:提升生命恢复15%]
+			[c/8B0000:鞭子长度与鞭子攻速随牺牲召唤栏数增加]
+			'''
+	}
+
+	FierceExplosive: {
+		DisplayName: 平台炸药
+		Tooltip:
+			'''
+			一个炸药，可以挖空区域创建平台，可以到模组配置处调整以下参数：
+			清除高度；左右宽度；平台间隔；平台样式
+
+			'''
+	}
+
+	GuQin: {
+		Tooltip:
+			'''
+			[c/FFD700:★★★★][c/DAA520:☆]
+			[c/00FFFF:该饰品依此法激活：快捷栏1位置放置远程武器及7-0位置放置四职业武器各一个]
+			[c/00FF00:根据7-0位置武器的不同顺序，给予不同效果]
+			[c/DAA520:此外，1位置的远程武器可以偷取7-0位置的远程武器的攻速]
+			[c/DAD520:差值越大，偷取的攻速越多，加成最多70%]
+			[c/F0FF00:7号快捷栏]
+			[i:3458] [c/FFA500:+400%暴击伤害⚔️]
+			[i:3456] [c/7FFFD4:+30%子弹速度♛]
+			[i:3457] [c/DA70D6:还没做♬]
+			[i:3459] [c/40E0D0:+35%移动速度⚓]
+			[c/0FFF00:8号快捷栏]
+			[i:3458] [c/FFA500:还没做⚔️]
+			[i:3456] [c/7FFFD4:+100%远程伤害♛]
+			[i:3457] [c/DA70D6:弹药附加debuff♬]
+			[i:3459] [c/40E0D0:还没做⚓]
+			[c/00FFF0:9号快捷栏]
+			[i:3458] [c/FFA500:+30%击退效果⚔️]
+			[i:3456] [c/7FFFD4:+28%远程暴击率♛]
+			[i:3457] [c/DA70D6:还没做♬]
+			[i:3459] [c/40E0D0:+30%远程攻速⚓]
+			[c/00FF0F:0号快捷栏]
+			[i:3458] [c/FFA500:8%生命偷取(33%/击)⚔️]
+			[i:3456] [c/7FFFD4:还没做♛]
+			[i:3457] [c/DA70D6:还没做♬]
+			[i:3459] [c/40E0D0:+3召唤栏位⚓]
+			'''
+		DisplayName: 琴
+	}
+
+	WoJianJiWoDe: {
+		DisplayName: 我见即我得
+		Tooltip:
+			'''
+			[c/FFD700:★★][c/DAA520:☆☆☆]
+			[c/00FFFF:⛰接近敌人会降低它们的20%防御和25点攻击力，过于接近敌人可额外降低一次攻击] 
+			[c/7CFC00:⛰降低的防御会转化为玩家的防御(按比例)，降低的攻击会转化为玩家的减伤(按敌人数)]
+			[c/FFA500:⛰最多+150防御，15%减伤]
+			'''
+	}
+
+	EvilBait: {
+		Tooltip: 使用以召唤邪恶蠕虫
+		DisplayName: 邪恶饵料
+	}
+
+	ResetScroll: {
+		DisplayName: 重置技能点
+		Tooltip: 重置技能点
+	}
+
+	SkillPoint: {
+		DisplayName: 技能点
+		Tooltip: 技能点
+	}
+
+	RainbowShotgun: {
+		Tooltip: 长按，射速会越来越快的霰弹枪
+		DisplayName: 彩虹霰弹枪
+	}
+
+	BatSummoningStaffA: {
+		DisplayName: 红蝙蝠召唤杖
+		Tooltip: 召唤一只红蝙蝠，像不像血红法杖啊，基本就没变
+	}
+
+	BatSummoningStaffB: {
+		DisplayName: 蓝蝙蝠召唤杖
+		Tooltip: 召唤一只蓝蝙蝠，像不像血红法杖啊，就改了一点
+	}
+
+	BatSummoningStaffC: {
+		DisplayName: 绿蝙蝠召唤杖
+		Tooltip: 召唤一只绿蝙蝠，排队很有意思，12只以上就会换一行
+	}
+
+	BulletA: {
+		// Tooltip: ""
+		// DisplayName: Bullet A
+	}
+}
+
+Buffs: {
+	longMinionBuff: {
+		Description: 腐化之龙守护你
+		DisplayName: 腐化之龙
+	}
+
+	BubbleBuff: {
+		Description: +10%伤害、+10%暴击
+		DisplayName: 泡泡盾
+	}
+
+	LifeQuartzNecklaceBuff: {
+		DisplayName: 生命石英
+		Description:
+			'''
+			防御技：给予无敌帧保护受到致命伤害的玩家
+			复活是有5分钟冷却的！！！
+			'''
+	}
+
+	MagicalCircleBuff: {
+		DisplayName: 魔法阵
+		Description: 召唤一个魔法阵
+	}
+
+	DeerJadeDamageBuff: {
+		DisplayName: 鹿
+		Description: 鹿
+	}
+
+	BatSummoningBuffA: {
+		DisplayName: 红蝙蝠
+		Description: 红蝙蝠
+	}
+
+	BatSummoningBuffB: {
+		DisplayName: 蓝蝙蝠
+		Description: 蓝蝙蝠
+	}
+
+	BatSummoningBuffC: {
+		DisplayName: 绿蝙蝠
+		Description: 绿蝙蝠
+	}
+}
+
+DamageClasses.ConcertoDamageClass.DisplayName: 协奏伤害
+
+InfoDisplays: {
+	SummonInfoDisplay: {
+		NoMinions: No minions
+		CurrentMinions: "{0} minions"
+		DisplayName: Minion Count
+	}
+}
+
+Keybinds.技能树面板.DisplayName: 技能树面板
