@@ -18,14 +18,11 @@ namespace BoBo.Content.Projectiles.Accessories.FightAcc
 		}
 		public override void AI()
 		{
-			//透明度衰减
-			Projectile.Opacity -= 0.04f;
+			Projectile.Opacity -= 0.04f;//透明度衰减
 			Projectile.scale -= 0.01f;
 			if (Projectile.Opacity <= 0) Projectile.Kill();
-			//减速效果
-			Projectile.velocity *= 0.96f;
+			Projectile.velocity *= 0.96f;//减速
 		}
-
 		public override Color? GetAlpha(Color lightColor)
 			=> new Color(200, 220, 255) * Projectile.Opacity;
 	}

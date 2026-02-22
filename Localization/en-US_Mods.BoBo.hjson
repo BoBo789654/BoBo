@@ -146,6 +146,7 @@ Projectiles: {
 	BatB.DisplayName: Bat B
 	BatC.DisplayName: Bat C
 	BulletAProj.DisplayName: Bullet A Proj
+	BubbleShieldCrack.DisplayName: Bubble Shield Crack
 }
 
 Prefixes: {

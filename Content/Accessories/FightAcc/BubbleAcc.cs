@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace BoBo.Content.Accessories.FightAcc
 {
-	public class BubbleAcc : ModItem//出现问题：如何只有一个弹幕
+	public class BubbleAcc : ModItem//出现问题：如何只有一个弹幕（已解决：可搜Index看如何使用Main.projectile[BubbleShieldProjIndex]，并且可以使得泡泡破碎后泡泡消失）
 	{
 		public override string Texture => Pictures.FightAcc + Name;
 		public override void SetDefaults()
@@ -68,7 +68,7 @@ namespace BoBo.Content.Accessories.FightAcc
 					}
 					BubbleTimer = 0;
 				}
-				else if (ShowBubble && !BubbleActive && BubbleShieldProjIndex != -1)
+				else if (ShowBubble && !BubbleActive)
 				{
 					BubbleTimer++;
 					BubbleShieldProjIndex = -1;
@@ -82,14 +82,15 @@ namespace BoBo.Content.Accessories.FightAcc
 					TriggerBubbleEffect();//泡泡效果
 					BubbleActive = false;
 					BubbleTimer = 0;
+					Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center, Vector2.Zero,
+							ModContent.ProjectileType<BubbleShieldCrack>(), 0, 0, Player.whoAmI);
 					Projectile proj = Main.projectile[BubbleShieldProjIndex];
 					proj.Kill();
 				}
 			}
 			private void TriggerBubbleEffect()
 			{
-				//玩家回血
-				int heal = (int)(Player.statLifeMax2 * 0.2f);
+				int heal = (int)(Player.statLifeMax2 * 0.2f);//玩家回血
 				Player.HealEffect(heal);
 				//击退周围敌人
 				Vector2 playerCenter = Player.Center;
@@ -108,7 +109,6 @@ namespace BoBo.Content.Accessories.FightAcc
 					Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center, velocity * 1.5f,
 						ModContent.ProjectileType<BubbleBurst>(), 0, 0, Player.whoAmI);
 				}
-				//增益
 				Player.AddBuff(ModContent.BuffType<BubbleBuff>(), 600);//给个10秒
 			}
 		}
