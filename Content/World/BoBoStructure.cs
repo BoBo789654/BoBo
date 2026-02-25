@@ -23,7 +23,6 @@ namespace BoBo.Content.World
 				tasks.Insert(settleIndex + 1, new PassLegacy("BoBo  Structures1", GenerateHellStructures));
 			}
 		}
-
 		private void GenerateHellStructures(GenerationProgress progress, GameConfiguration config)
 		{
 			progress.Message = "生成BoBo建筑";//设置进度条显示文本
@@ -170,46 +169,46 @@ namespace BoBo.Content.World
 	}
 }
 /*
-			#region 矩形创建，左上角原点
-			WorldUtils.Gen(
-				new Point(originX, originY),
-				new Shapes.Rectangle(10, 15),//一个宽10格，高15格的矩形
-				new Actions.PlaceTile(TileID.WoodBlock));
-			#endregion
-			#region 矩形创建，矩形中心原点
-			int width = 10;
-			int height = 15;
-			//实际上就是左移宽度的一半再上移高度的一半
-			WorldUtils.Gen(
-				new Point(originX, originY),
-				new Shapes.Rectangle(new Rectangle(-width / 2, -height / 2, width, height)),
-				new Actions.PlaceTile(TileID.IceBlock));
-			#endregion
-			#region 链式创建Actions.Chain(意思是按顺序创建
-			WorldUtils.Gen(
-				origin,
-				new Shapes.Circle(10),
-				Actions.Chain(
-				    new Actions.ClearTile(),
-				    new Actions.PlaceTile(TileID.Coralstone)
-			    )
-			);
-			#endregion
-			*/
-/*		private void SafePlaceObject(int x, int y, int type, int style = 0)
-		{
-			if (!WorldGen.InWorld(x, y)) return;//检查坐标是否在有效世界范围内
-			Tile tile = Main.tile[x, y];//获取目标位置的物块数据
-			if (tile.HasTile && Main.tileSolid[tile.TileType])//验证：当前位置必须有物块且是固体物块
-			{
-				WorldGen.PlaceObject(x, y, type, mute: true, style: style);//安全放置对象（type为物块ID，style为变体样式）
-				WorldGen.SquareTileFrame(x, y);//刷新物块贴图避免显示错误
-			}
-			//以下写在GenerateSingleBuilding(int originX, int originY)中
-			//放置物体
-			SafePlaceObject(originX + 4, originY - 2, TileID.Crystals, style: 1);
-			SafePlaceObject(originX + 2, originY - 4, TileID.Hellforge);
-			//刷新贴图
-			WorldGen.SquareTileFrame(originX + 4, originY - 2);
-			WorldGen.SquareTileFrame(originX + 2, originY - 4);
-		}*/
+#region 矩形创建，左上角原点
+WorldUtils.Gen(
+	new Point(originX, originY),
+	new Shapes.Rectangle(10, 15),//一个宽10格，高15格的矩形
+	new Actions.PlaceTile(TileID.WoodBlock));
+#endregion
+#region 矩形创建，矩形中心原点
+int width = 10;
+int height = 15;
+//实际上就是左移宽度的一半再上移高度的一半
+WorldUtils.Gen(
+	new Point(originX, originY),
+	new Shapes.Rectangle(new Rectangle(-width / 2, -height / 2, width, height)),
+	new Actions.PlaceTile(TileID.IceBlock));
+#endregion
+#region 链式创建Actions.Chain(意思是按顺序创建
+WorldUtils.Gen(
+	origin,
+	new Shapes.Circle(10),
+	Actions.Chain(
+	    new Actions.ClearTile(),
+	    new Actions.PlaceTile(TileID.Coralstone)
+    )
+);
+#endregion
+private void SafePlaceObject(int x, int y, int type, int style = 0)
+{
+	if (!WorldGen.InWorld(x, y)) return;//检查坐标是否在有效世界范围内
+	Tile tile = Main.tile[x, y];//获取目标位置的物块数据
+	if (tile.HasTile && Main.tileSolid[tile.TileType])//验证：当前位置必须有物块且是固体物块
+	{
+		WorldGen.PlaceObject(x, y, type, mute: true, style: style);//安全放置对象（type为物块ID，style为变体样式）
+		WorldGen.SquareTileFrame(x, y);//刷新物块贴图避免显示错误
+	}
+	//以下写在GenerateSingleBuilding(int originX, int originY)中
+	//放置物体
+	SafePlaceObject(originX + 4, originY - 2, TileID.Crystals, style: 1);
+	SafePlaceObject(originX + 2, originY - 4, TileID.Hellforge);
+	//刷新贴图
+	WorldGen.SquareTileFrame(originX + 4, originY - 2);
+	WorldGen.SquareTileFrame(originX + 2, originY - 4);
+}
+*/

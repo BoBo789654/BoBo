@@ -147,6 +147,7 @@ Projectiles: {
 	BatC.DisplayName: Bat C
 	BulletAProj.DisplayName: Bullet A Proj
 	BubbleShieldCrack.DisplayName: Bubble Shield Crack
+	LargeDesertTornado.DisplayName: Large Desert Tornado
 }
 
 Prefixes: {
@@ -511,6 +512,16 @@ Items: {
 	BulletA: {
 		Tooltip: ""
 		DisplayName: Bullet A
+	}
+
+	OriginalBag: {
+		DisplayName: Original Bag
+		Tooltip: ""
+	}
+
+	SandstormStaff: {
+		Tooltip: ""
+		DisplayName: Sandstorm Staff
 	}
 }
 

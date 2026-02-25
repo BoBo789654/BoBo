@@ -74,5 +74,14 @@ namespace BoBo.Content.Items.Weapons.Ranged
 			spriteBatch.Draw(ModContent.Request<Texture2D>(tex).Value, position, frame, rainbowColor, 0f, origin, scale * 1.2f, SpriteEffects.None, 0f);
 			return false;
 		}
+		public override void AddRecipes()
+		{
+			Recipe recipe = CreateRecipe();
+			recipe.AddIngredient(ItemID.TacticalShotgun, 1);//战术霰弹枪
+			recipe.AddIngredient(ItemID.RainbowBrick, 15);//彩虹砖
+			recipe.AddIngredient(ItemID.FragmentStardust, 10);//星辰碎片
+			recipe.AddTile(TileID.LunarCraftingStation);//远古操纵机
+			recipe.Register();
+		}
 	}
 }

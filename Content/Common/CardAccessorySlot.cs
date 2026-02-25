@@ -1,7 +1,5 @@
-﻿using log4net;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -19,14 +17,17 @@ namespace BoBo.Content.Common
         public override string VanityTexture => "Terraria/Images/Item_0";
         public override string DyeBackgroundTexture => "Terraria/Images/Item_0";
         public override string DyeTexture => "Terraria/Images/Item_0";
-        /*public override string FunctionalBackgroundTexture => base.FunctionalBackgroundTexture;
-        public override string FunctionalTexture => base.FunctionalTexture;
-        public override string VanityBackgroundTexture => base.VanityBackgroundTexture;
-        public override string VanityTexture => base.VanityTexture;
-        public override string DyeBackgroundTexture => base.DyeBackgroundTexture;
-        public override string DyeTexture => base.DyeTexture;*/
-        //只允许卡片类物品放入
-        public override bool CanAcceptItem(Item item, AccessorySlotType context)
+		public override bool DrawFunctionalSlot => true;
+		public override bool DrawVanitySlot => false;
+		public override bool DrawDyeSlot => false;
+		//public override string FunctionalBackgroundTexture => base.FunctionalBackgroundTexture;
+		//public override string FunctionalTexture => base.FunctionalTexture;
+		//public override string VanityBackgroundTexture => base.VanityBackgroundTexture;
+		//public override string VanityTexture => base.VanityTexture;
+		//public override string DyeBackgroundTexture => base.DyeBackgroundTexture;
+		//public override string DyeTexture => base.DyeTexture;
+		//只允许卡片类物品放入
+		public override bool CanAcceptItem(Item item, AccessorySlotType context)
         {
             return item.ModItem is CardItem;
         }
@@ -107,21 +108,17 @@ namespace BoBo.Content.Common
             Item.maxStack = 9999;
             Item.value = Item.sellPrice(999, 0, 0, 0);
         }
-        //当卡片放入槽位时应用效果
-        public virtual void ApplyCardEffect(Player player)
-        {
+        public virtual void ApplyCardEffect(Player player)//当卡片放入槽位时应用效果
+		{
             //在子类中实现具体效果
         }
-
-        //当卡片移除槽位时移除效果
-        public virtual void RemoveCardEffect(Player player)
-        {
+        public virtual void RemoveCardEffect(Player player)//当卡片移除槽位时移除效果
+		{
             //在子类中实现效果移除
         }
-
-        //卡片不能放在普通饰品栏
-        public override bool CanEquipAccessory(Player player, int slot, bool modded)
-        {
+        
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)//卡片不能放在普通饰品栏
+		{
             return slot == ModContent.GetInstance<CardAccessorySlot>().Type;
         }
     }

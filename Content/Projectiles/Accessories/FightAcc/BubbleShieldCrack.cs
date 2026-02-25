@@ -23,6 +23,7 @@ namespace BoBo.Content.Projectiles.Accessories.FightAcc
 			Projectile.ignoreWater = true;
 			Projectile.tileCollide = false;
 			Projectile.friendly = true;
+			Projectile.hostile = false;
 		}
 		public override bool? CanHitNPC(NPC target)
 		{

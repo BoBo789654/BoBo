@@ -27,7 +27,7 @@ namespace BoBo.Content.Projectiles.Weapons.Summon
 		public override void SetDefaults()
 		{
 			Projectile.width = 80;
-			Projectile.height = 184;
+			Projectile.height = 46;
 			Projectile.friendly = true;
 			Projectile.light = 0.5f;
 			Projectile.tileCollide = false;
@@ -72,8 +72,27 @@ namespace BoBo.Content.Projectiles.Weapons.Summon
 		{
 			return false;
 		}
+		private bool CheckActive(Player owner)//主动去除召唤物的Buff并去除召唤物
+		{
+			if (owner.dead || !owner.active)
+			{
+				owner.ClearBuff(ModContent.BuffType<BatSummoningBuffC>());
+
+				return false;
+			}
+			if (!owner.HasBuff(ModContent.BuffType<BatSummoningBuffC>()))
+			{
+				Projectile.Kill();
+			}
+			return true;
+		}
 		public override void AI()
 		{
+			Player owner = Main.player[Projectile.owner];
+			if (!CheckActive(owner))//主动去除召唤物的Buff并去除召唤物
+			{
+				return;
+			}
 			if (player.HasBuff<BatSummoningBuffC>())//保持召唤物存活
 				Projectile.timeLeft = 2;
 			if (++Projectile.frameCounter >= 5)//动画帧更新
@@ -227,6 +246,11 @@ namespace BoBo.Content.Projectiles.Weapons.Summon
 					}
 				}
 			}
+		}
+		public override void OnKill(int timeLeft)
+		{
+			for (int i = 0; i <= 10; i++)
+				Dust.NewDust(Projectile.Center, 28, 56, DustID.GreenTorch);
 		}
 		public override bool PreDraw(ref Color lightColor)
 		{

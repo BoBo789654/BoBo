@@ -42,8 +42,8 @@ Configs: {
 		}
 
 		SlopeTypeSlide: {
-			// Tooltip: 设置平台斜坡形态
-			// Label: 斜坡类型
+			Tooltip: 设置平台斜坡形态
+			Label: 斜坡类型
 		}
 
 		SlopeTypeSlider: {
@@ -147,6 +147,7 @@ Projectiles: {
 	BatC.DisplayName: Bat C
 	// BulletAProj.DisplayName: Bullet A Proj
 	// BubbleShieldCrack.DisplayName: Bubble Shield Crack
+	// LargeDesertTornado.DisplayName: Large Desert Tornado
 }
 
 Prefixes: {
@@ -653,8 +654,18 @@ Items: {
 	}
 
 	BulletA: {
-		// Tooltip: ""
-		// DisplayName: Bullet A
+		Tooltip: A型子弹
+		DisplayName: A型子弹
+	}
+
+	OriginalBag: {
+		DisplayName: 始源宝藏袋
+		Tooltip: 应有尽有，开个测试档真麻烦
+	}
+
+	SandstormStaff: {
+		Tooltip: ""
+		DisplayName: 沙暴法杖
 	}
 }
 

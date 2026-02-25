@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BoBo.Content.Buffs.MinionBuff;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace BoBo.Content.Projectiles.Weapons.Summon
 		public override void SetDefaults()
 		{
 			Projectile.width = 44;
-			Projectile.height = 128;
+			Projectile.height = 32;
 			Projectile.scale = 1f;
 			Projectile.timeLeft = 60;
 			Projectile.penetrate = -1;
@@ -36,9 +37,28 @@ namespace BoBo.Content.Projectiles.Weapons.Summon
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 120;
 		}
+		private bool CheckActive(Player owner)//主动去除召唤物的Buff并去除召唤物
+		{
+			if (owner.dead || !owner.active)
+			{
+				owner.ClearBuff(ModContent.BuffType<BatSummoningBuffB>());
+
+				return false;
+			}
+			if (!owner.HasBuff(ModContent.BuffType<BatSummoningBuffB>()))
+			{
+				Projectile.Kill();
+			}
+			return true;
+		}
 		private static List<int> BatOfLightListedTargets = new List<int>();//列表
 		public override void AI()
 		{
+			Player owner = Main.player[Projectile.owner];
+			if (!CheckActive(owner))//主动去除召唤物的Buff并去除召唤物
+			{
+				return;
+			}
 			List<int> batOfLightListedTargets = BatOfLightListedTargets;//获取列表引用
 			DelegateMethods.v3_1 = BatOfLightGetColor().ToVector3();//设置投射物光照颜色
 			Point point = Projectile.Center.ToTileCoordinates();
@@ -60,7 +80,7 @@ namespace BoBo.Content.Projectiles.Weapons.Summon
 		public override void OnKill(int timeLeft)
 		{
 			for (int i = 0; i <= 10; i++)
-				Dust.NewDust(Projectile.Center, 28, 56, DustID.PurpleTorch);
+				Dust.NewDust(Projectile.Center, 28, 56, DustID.BlueTorch);
 		}
 		public static Color BatOfLightGetColor()
 		{

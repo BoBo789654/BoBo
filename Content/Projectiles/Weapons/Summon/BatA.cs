@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BoBo.Content.Buffs.MinionBuff;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -25,7 +26,7 @@ namespace BoBo.Content.Projectiles.Weapons.Summon
 		public override void SetDefaults()
 		{
 			Projectile.width = 44;
-			Projectile.height = 160;
+			Projectile.height = 32;
 			Projectile.scale = 1f;
 			Projectile.timeLeft = 60;
 			Projectile.penetrate = -1;
@@ -40,8 +41,27 @@ namespace BoBo.Content.Projectiles.Weapons.Summon
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 120;
 		}
+		private bool CheckActive(Player owner)//主动去除召唤物的Buff并去除召唤物
+		{
+			if (owner.dead || !owner.active)
+			{
+				owner.ClearBuff(ModContent.BuffType<BatSummoningBuffA>());
+
+				return false;
+			}
+			if (!owner.HasBuff(ModContent.BuffType<BatSummoningBuffA>()))
+			{
+				Projectile.Kill();
+			}
+			return true;
+		}
 		public override void AI()
 		{
+			Player owner = Main.player[Projectile.owner];
+			if (!CheckActive(owner))//主动去除召唤物的Buff并去除召唤物
+			{
+				return;
+			}
 			DelegateMethods.v3_1 = Color.Purple.ToVector3();
 			Point point = Projectile.Center.ToTileCoordinates();
 			DelegateMethods.CastLightOpen(point.X, point.Y);
