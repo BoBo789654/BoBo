@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace BoBo.Content.Items.Weapons.Summon
 {
-	public class BatSummoningStaffC : ModItem//待机排队，很好玩
+	public class BatSummoningStaffC : ModItem//蝙蝠召唤杖：待机排队，矩形队列，很好玩
 	{
 		public override string Texture => Pictures.Summon + Name;
 		public override void SetStaticDefaults()

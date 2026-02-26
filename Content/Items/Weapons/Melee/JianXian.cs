@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace BoBo.Content.Items
 { 
-	public class JianXian : ModItem
+	public class JianXian : ModItem//剑仙：击中敌人会生成随机材质的悬浮剑
 	{
         public override string Texture => Pictures.Meiee + Name;
 

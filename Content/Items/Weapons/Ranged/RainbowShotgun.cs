@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace BoBo.Content.Items.Weapons.Ranged
 {
-	public class RainbowShotgun : ModItem
+	public class RainbowShotgun : ModItem//彩虹霰弹枪：背包内材质改变+攻速递增（暖机）
 	{
 		public override string Texture => Pictures.Ranged + Name;
 		private int AttackCounter = 0; //记录连续攻击次数

@@ -11,7 +11,7 @@ namespace BoBo.Content.Items
 	// This is a basic item template.
 	// Please see tModLoader's ExampleMod for every other example:
 	// https://github.com/tModLoader/tModLoader/tree/stable/ExampleMod
-	public class TestSword : ModItem
+	public class TestSword : ModItem//测试剑：万物起源
 	{
         // The Display Name and Tooltip of this item can be edited in the 'Localization/en-US_Mods.BoBo.hjson' file.
         public override string Texture => Pictures.Meiee + Name;

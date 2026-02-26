@@ -24,61 +24,19 @@ namespace BoBo.Content.UIs.Dialogue
 		private Rectangle DialogArea;               //对话框点击区域
 		private DialogueList CurrentDialogue;       //当前显示的对话数据
 		private float PictureOffsetY;               //人物框的Y轴偏移（移动较慢）
-		private float DialogOffsetY;                    //对话框的Y轴偏移（移动较快）
-
-		private class DialogueList(string[] texts, string picture, string dialogbox, float dw, float dh, float pw, float ph, string name)
-		{
-			public string[] Texts = texts;          //对话文本
-			public string PictureTex = picture;     //人物图片纹理路径
-			public string DialogBox = dialogbox;    //对话框纹理路径
-			public float DialogWidth = dw;          //对话框宽
-			public float DialogHeight = dh;         //对话框高
-			public float PictureWidth = pw;         //人物图片宽
-			public float PictureHeight = ph;        //人物图片高
-			public string Name = name;              //人物名字
-			public Texture2D GetPictureTexture()
-			{
-				return ModContent.Request<Texture2D>(PictureTex).Value; //获取人物的图片纹理
-			}
-			public Texture2D GetDialogTexture()
-			{
-				return ModContent.Request<Texture2D>(DialogBox).Value; //获取对话框纹理
-			}
-		}
-		private static readonly Dictionary<int, DialogueList> DialogueCatalog = new() //对话目录哈希表
-		{
-			{
-				1, new DialogueList(
-					texts: new[] { "测试对话1", "测试对话2" },
-					picture: "BoBo/Asset/UIs/Dialogue/PictureTex/PictureTex",
-					dialogbox: "BoBo/Asset/UIs/Dialogue/DialogueBox/DialogueBox",
-					440, 190, 482, 690, "测试角色A")
-			},
-			{
-				2, new DialogueList(
-					texts: new[] { "测试对话1", "测试对话2", "测试对话3" },
-					picture: "BoBo/Asset/UIs/Dialogue/PictureTex/PictureTex",
-					dialogbox: "BoBo/Asset/UIs/Dialogue/DialogueBox/DialogueBox",
-					440, 190, 181, 220, "测试角色B")
-			},
-			{
-				3, new DialogueList(
-					texts: new[] { "测试对话1", "测试对话2", "测试对话3", "测试对话4" },
-					picture: "BoBo/Asset/UIs/Dialogue/PictureTex/PictureTex",
-					dialogbox: "BoBo/Asset/UIs/Dialogue/DialogueBox/DialogueBox",
-					440, 190, 482, 690, "测试角色C")
-			}
-		};
+		private float DialogOffsetY;                //对话框的Y轴偏移（移动较快）
 		public static DialogueUI instance;
+
 		public DialogueUI()
 		{
 			instance = this; //设置静态实例引用
 		}
+
 		public override void Update(GameTime gameTime)
 		{
 			Player player = Main.LocalPlayer;
-			float pictureMoveSpeed = 0.10f;  //人物框移动速度（较慢）
-			float dialogMoveSpeed = 0.18f;   //对话框移动速度（较快）
+			float PictureMoveSpeed = 0.10f;  //人物框移动速度（较慢）
+			float DialogMoveSpeed = 0.18f;   //对话框移动速度（较快）
 
 			switch (CurrentState)
 			{
@@ -87,10 +45,10 @@ namespace BoBo.Content.UIs.Dialogue
 					Alpha = Math.Min(Alpha + 0.05f, 1f);
 
 					//人物框以较慢速度移动到目标位置
-					PictureOffsetY = MathHelper.Lerp(PictureOffsetY, 0f, pictureMoveSpeed);
+					PictureOffsetY = MathHelper.Lerp(PictureOffsetY, 0f, PictureMoveSpeed);
 
 					//对话框以较快速度移动到目标位置
-					DialogOffsetY = MathHelper.Lerp(DialogOffsetY, 0f, dialogMoveSpeed);
+					DialogOffsetY = MathHelper.Lerp(DialogOffsetY, 0f, DialogMoveSpeed);
 
 					//当到达目标位置且完全透明时，切换到显示状态
 					if (Alpha >= 0.95f && Math.Abs(PictureOffsetY) < 5f && Math.Abs(DialogOffsetY) < 5f)
@@ -116,10 +74,10 @@ namespace BoBo.Content.UIs.Dialogue
 					Alpha = Math.Max(Alpha - 0.05f, 0f);
 
 					//人物框以较慢速度移动到屏幕外
-					PictureOffsetY = MathHelper.Lerp(PictureOffsetY, 300f, pictureMoveSpeed);
+					PictureOffsetY = MathHelper.Lerp(PictureOffsetY, 300f, PictureMoveSpeed);
 
 					//对话框以较快速度移动到屏幕外
-					DialogOffsetY = MathHelper.Lerp(DialogOffsetY, 300f, dialogMoveSpeed);
+					DialogOffsetY = MathHelper.Lerp(DialogOffsetY, 300f, DialogMoveSpeed);
 
 					//当完全透明且都移到屏幕外时，切换到隐藏状态
 					if (Alpha <= 0.05f && PictureOffsetY >= 290f && DialogOffsetY >= 290f)
@@ -137,6 +95,7 @@ namespace BoBo.Content.UIs.Dialogue
 			}
 			base.Update(gameTime);
 		}
+
 		private void DisablePlayerControls(Player player)
 		{
 			player.controlLeft = false;
@@ -150,6 +109,7 @@ namespace BoBo.Content.UIs.Dialogue
 			player.controlTorch = false;
 			player.controlSmart = false;
 		}
+
 		private void EnablePlayerControls(Player player)
 		{
 			player.controlLeft = true;
@@ -161,6 +121,7 @@ namespace BoBo.Content.UIs.Dialogue
 			player.controlMount = true;
 			player.controlHook = true;
 		}
+
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			if (CurrentDialogue == null || Alpha <= 0f) //无当前对话或完全透明时不绘制
@@ -229,6 +190,7 @@ namespace BoBo.Content.UIs.Dialogue
 			}
 			#endregion
 		}
+
 		private void ResetDialogue()
 		{
 			CurrentDialogue = null; //清除当前对话
@@ -239,11 +201,12 @@ namespace BoBo.Content.UIs.Dialogue
 			Player player = Main.LocalPlayer;
 			EnablePlayerControls(player);
 		}
-		public void StartDialogue(int dialogueID) //开始显示指定ID的对话
+
+		public void StartDialogue(int DialogueID) //开始显示指定ID的对话
 		{
-			if (DialogueCatalog.TryGetValue(dialogueID, out var dialogue))
+			if (DialogueData.Catalog.TryGetValue(DialogueID, out var Dialogue))//从 DialogueData.Catalog 中获取数据
 			{
-				CurrentDialogue = dialogue; //设置当前对话
+				CurrentDialogue = Dialogue; //设置当前对话
 				Click = 0; //重置为第一句
 				CurrentState = UIState.Entering; //设置为进入状态
 				Alpha = 0f; //初始透明度为0（开始淡入）
@@ -251,30 +214,35 @@ namespace BoBo.Content.UIs.Dialogue
 				DialogOffsetY = 300f; //初始对话框偏移为屏幕外
 			}
 		}
+
 		public bool GetCanMoveState()
 		{
 			return CurrentState == UIState.Hidden;
 		}
+
 		public void EndDialogue() //强制结束对话的方法
 		{
 			CurrentState = UIState.Exiting; //直接切换到退出状态
 		}
+
 		public void Unload() //在Mod卸载时调用
 		{
-			DialogueCatalog.Clear();
 			CurrentDialogue = null;
 		}
 	}
+
 	public class UISystem : ModSystem //对话UI的加载、更新和绘制
 	{
 		public static UserInterface DialogueInterface; //用户界面实例
 		public static DialogueUI DialogueInstance; //对话UI实例
+
 		public override void Load() //Mod加载时初始化UI系统
 		{
 			DialogueInstance = new DialogueUI(); //创建对话UI实例
 			DialogueInterface = new UserInterface(); //创建用户界面
 			DialogueInterface.SetState(DialogueInstance); //设置当前UI状态
 		}
+
 		public override void Unload() //Mod卸载时清理资源
 		{
 			DialogueUI.instance?.Unload(); //调用对话UI的清理方法
@@ -282,10 +250,12 @@ namespace BoBo.Content.UIs.Dialogue
 			DialogueInstance = null; //释放实例引用
 			DialogueInterface = null; //释放接口引用
 		}
+
 		public override void UpdateUI(GameTime gameTime) //每帧更新UI逻辑
 		{
 			DialogueInterface?.Update(gameTime); //更新对话界面状态
 		}
+
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers) //将对话UI插入到原版界面层中
 		{
 			int mouseTextIndex = layers.FindIndex(layer => layer.Name == "Vanilla: Mouse Text"); //查找原版的鼠标文本层（想要在其之前插入对话层）
@@ -303,6 +273,7 @@ namespace BoBo.Content.UIs.Dialogue
 			}
 		}
 	}
+
 	public class DialoguePlayer : ModPlayer
 	{
 		public override void PreUpdate()

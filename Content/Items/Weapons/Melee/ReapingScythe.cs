@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace BoBo.Content.Items
 {
-	public class ReapingScythe : ModItem//收割镰刀：仿照ExampleCustomSwingSword
+	public class ReapingScythe : ModItem//收割镰刀：仿照ExampleCustomSwingSword，做了挥舞动画
 	{
 		public override string Texture => Pictures.Meiee + Name;
 		private int AttackCombo = 0;//连击计数 (0-3循环)

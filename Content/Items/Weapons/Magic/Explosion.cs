@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace BoBo.Content.Items.Weapons.Magic
 {
-	public class Explosion : ModItem
+	public class Explosion : ModItem//Explosion：试了一下爆炸特效
 	{
 		public override string Texture => Pictures.Magic + Name;
 		public override void SetDefaults()

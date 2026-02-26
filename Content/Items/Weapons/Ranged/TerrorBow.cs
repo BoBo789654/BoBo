@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace BoBo.Content.Items.Weapons.Ranged
 {
-    public class TerrorBow : ModItem
+    public class TerrorBow : ModItem//恐怖弓：背后射箭特效，自定义弹药类型
     {
         public override string Texture => Pictures.Ranged + Name;
         public override void SetDefaults() {

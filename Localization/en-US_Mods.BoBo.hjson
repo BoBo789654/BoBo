@@ -523,6 +523,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Sandstorm Staff
 	}
+
+	ColorfulStaff: {
+		DisplayName: Colorful Staff
+		Tooltip: ""
+	}
 }
 
 Buffs: {

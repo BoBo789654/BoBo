@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace BoBo.Content.Items.Weapons.Summon
 {
-	public class BatSummoningStaffA : ModItem//血红法杖·改
+	public class BatSummoningStaffA : ModItem//蝙蝠召唤杖：血红法杖·改，基本一样
 	{
 		public override string Texture => Pictures.Summon + Name;
 		public override void SetStaticDefaults()

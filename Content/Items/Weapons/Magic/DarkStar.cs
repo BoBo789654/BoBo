@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace BoBo.Content.Items.Weapons.Magic
 {
-	public class DarkStar : ModItem
+	public class DarkStar : ModItem//暗星：手持弹幕（拖尾研究失败了）
 	{
 		public override string Texture => Pictures.Magic + Name;
 		public override void SetDefaults()

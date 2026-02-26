@@ -1,5 +1,4 @@
 ﻿using BoBo.Content.Projectiles.Weapons.Magic;
-using Microsoft.Build.Evaluation;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -10,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace BoBo.Content.Items.Weapons.Magic
 {
-	public class SandstormStaff : ModItem
+	public class SandstormStaff : ModItem//沙暴法杖：利用灰度图做旋风特效
 	{
 		public override string Texture => Pictures.Magic + Name;
 		public override void SetStaticDefaults()

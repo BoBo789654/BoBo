@@ -8,7 +8,7 @@ using BoBo.Content.Buffs.MinionBuff;
 using BoBo.Content.Projectiles;
 namespace BoBo.Content.Items.Weapons.Summon
 {
-    public class Minionlong : ModItem//星尘之龙·改
+    public class Minionlong : ModItem//星尘之龙·改，追踪与原版略有不同
     //相关的内容在这写吧，总共有SimulateStarDustDragon基类、longMinion为弹幕
     {
         public override string Texture => Pictures.Summon + Name;
