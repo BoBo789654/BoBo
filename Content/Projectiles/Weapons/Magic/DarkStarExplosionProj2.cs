@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace BoBo.Content.Projectiles.Weapons.Magic
 {
-	public class ExplosionProj2 : ModProjectile
+	public class DarkStarExplosionProj2 : ModProjectile
 	{
 		private const int MaxRadius = 150;//最大爆炸半径
 		private const int Lifetime = 30;//弹幕存在时间（帧数）
@@ -29,7 +29,7 @@ namespace BoBo.Content.Projectiles.Weapons.Magic
 		}
 
 		public override void AI()
-		{
+		{	
 			//仅在第一帧造成伤害
 			if (Projectile.timeLeft == Lifetime)
 			{
@@ -54,22 +54,23 @@ namespace BoBo.Content.Projectiles.Weapons.Magic
 		}
 		public override bool PreDraw(ref Color lightColor)
 		{
+			Projectile.ai[0] = Main.rand.NextFloat(MathHelper.TwoPi);
 			Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
 			float progress = 1f - (float)Projectile.timeLeft / Lifetime;
-			Color BaseColor = new Color(255, 200, 100) * (1f - progress);//橙黄白
+			Color BaseColor = new Color(180, 0, 255) * (1f - progress);//紫
 			BaseColor.A = 0;
-			Color CoreColor = Color.Lerp(Color.Yellow, Color.White, progress);//黄白
+			Color CoreColor = Color.Lerp(Color.Purple, Color.White, progress);//紫
 			CoreColor.A = 0;
-			Color GlowColor = Color.Lerp(Color.Yellow, Color.OrangeRed, progress);//黄橙
+			Color GlowColor = Color.Lerp(Color.Purple, Color.MediumPurple, progress);//紫
 			GlowColor.A = 0;
 			Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, CoreColor * (1f - progress),
-				0f, texture.Size() / 2f, MathHelper.Lerp(0.1f, 2f, progress), SpriteEffects.None, 0);//往外扩，中等范围
+				Projectile.ai[0], texture.Size() / 2f, MathHelper.Lerp(0.1f, 2f, progress), SpriteEffects.None, 0);//往外扩，中等范围
 			if (progress < 0.7f && progress > 0.2f)
 				Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, BaseColor * (0.8f - progress * 0.5f),
-				0f, texture.Size() / 2f, MathHelper.Lerp(0.3f, 0.8f, 1f - progress), SpriteEffects.None, 0);//往里收
+				Projectile.ai[0], texture.Size() / 2f, MathHelper.Lerp(0.3f, 0.8f, 1f - progress), SpriteEffects.None, 0);//往里收
 			if (progress < 1f && progress > 0f)
 				Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, GlowColor * (0.6f - progress * 0.7f),
-					0f, texture.Size() / 2f, MathHelper.Lerp(1.5f, 3.5f, progress), SpriteEffects.None, 0);//往外扩，大范围
+					Projectile.ai[0], texture.Size() / 2f, MathHelper.Lerp(1.5f, 3.5f, progress), SpriteEffects.None, 0);//往外扩，大范围
 			return false;
 		}
 	}

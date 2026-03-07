@@ -1,12 +1,13 @@
 ﻿using BoBo.Content.Projectiles.Weapons.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace BoBo.Content.Items.Weapons.Magic
 {
-	public class DarkStar : ModItem//暗星：手持弹幕（拖尾研究失败了）
+	public class DarkStar : ModItem//暗星：手持弹幕（拖尾研究结束了，原来是三层的顶点绘制么）
 	{
 		public override string Texture => Pictures.Magic + Name;
 		public override void SetDefaults()
@@ -27,10 +28,26 @@ namespace BoBo.Content.Items.Weapons.Magic
 			Item.rare = ItemRarityID.Blue;
 			Item.channel = true;
 			Item.UseSound = SoundID.Item8;
+			Item.staff[Type] = true;
+		}
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+		{
+			int projectile = Projectile.NewProjectile(
+				source,
+				position,
+				velocity,
+				ModContent.ProjectileType<DarkStarProj>(),
+				damage,
+				knockback,
+				player.whoAmI
+			);
+			//可以设置初始状态
+			Main.projectile[projectile].ai[0] = 0f;//0表示手持状态
+			return false;
 		}
 		public override Vector2? HoldoutOffset()
 		{
-			return new Vector2(-2f, 0f);//调整手持位置
+			return new Vector2(-20f, 0f);//调整手持位置
 		}
 		public override void AddRecipes()
 		{

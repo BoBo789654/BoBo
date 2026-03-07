@@ -148,6 +148,8 @@ Projectiles: {
 	BulletAProj.DisplayName: Bullet A Proj
 	BubbleShieldCrack.DisplayName: Bubble Shield Crack
 	LargeDesertTornado.DisplayName: Large Desert Tornado
+	DarkStarExplosionProj.DisplayName: Dark Star Explosion Proj
+	DarkStarExplosionProj2.DisplayName: Dark Star Explosion Proj2
 }
 
 Prefixes: {
