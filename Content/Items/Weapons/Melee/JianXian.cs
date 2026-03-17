@@ -22,15 +22,15 @@ namespace BoBo.Content.Items
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 1;
 			Item.value = Item.buyPrice(0, 10, 20, 30);
-			Item.rare = ItemRarityID.Blue;
+			Item.rare = ItemRarityID.Master;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-			Item.scale = 2.5f;
+			Item.scale = 2.5f + 2.5f;
 		}
 		public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			//每次命中时生成4把悬浮剑
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 16; i++)
 			{
 				Projectile.NewProjectile(player.GetSource_ItemUse(Item), target.Center, Vector2.Zero,
 					ModContent.ProjectileType<XianJian>(), Item.damage / 2, 0f, player.whoAmI, target.whoAmI, ai2: (MathHelper.Pi / 180 * (-35 + i * 22.5f)) + MathHelper.Pi / 2);

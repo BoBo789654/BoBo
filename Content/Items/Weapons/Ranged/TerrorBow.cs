@@ -22,7 +22,7 @@ namespace BoBo.Content.Items.Weapons.Ranged
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 3;
             Item.value = Item.buyPrice(0, 20, 20, 20);
-			Item.rare = ItemRarityID.Green;
+			Item.rare = ItemRarityID.Red;
             Item.UseSound = SoundID.Item5;
             Item.autoReuse = true;
             Item.useTurn = false;

@@ -21,7 +21,7 @@ namespace BoBo.Content.Accessories.FightAcc
 			Item.width = 28;
 			Item.height = 28;
 			Item.accessory = true;
-			Item.rare = ItemRarityID.Green;
+			Item.rare =	Main.rand.NextBool() ? ItemRarityID.Cyan : ItemRarityID.LightRed;
 			Item.value = Item.sellPrice(1, 0, 0, 0);
 		}
 

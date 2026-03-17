@@ -25,13 +25,12 @@ namespace BoBo.Content.Items.Weapons.Summon
             Item.damage = 111;
             Item.knockBack = 3;
             Item.value = Item.buyPrice(0, 11, 12, 0);
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Purple;
             Item.UseSound = SoundID.Item44;
             Item.autoReuse = true;
             Item.noUseGraphic = false;
             Item.noMelee = true;
             Item.useAmmo = AmmoID.None;
-            Item.mana = 2;
             Item.buffType = ModContent.BuffType<longMinionBuff>();
         }
         public override Vector2? HoldoutOffset()

@@ -37,7 +37,7 @@ namespace BoBo.Content.Accessories.OtherAcc
 			Item.width = 54;
 			Item.height = 48;
 			Item.accessory = true;
-			Item.rare = ItemRarityID.Yellow;
+			Item.rare = ItemRarityID.Master;
 			Item.value = Item.sellPrice(1, 0, 0, 0);
 		}
 		public override void UpdateAccessory(Player player, bool hideVisual)

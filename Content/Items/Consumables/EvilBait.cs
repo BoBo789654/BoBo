@@ -27,7 +27,7 @@ namespace BoBo.Content.Items.Consumables
 			Item.height = 24;//物品高度
 			Item.maxStack = 9999;//最大堆叠数量
 			Item.value = 5000;//出售价值
-			Item.rare = ItemRarityID.Red;//稀有度
+			Item.rare = ItemRarityID.Lime;//稀有度
 			Item.useAnimation = 30;//使用动画时长
 			Item.useTime = 30;//使用间隔
 			Item.useStyle = ItemUseStyleID.HoldUp;//使用动作

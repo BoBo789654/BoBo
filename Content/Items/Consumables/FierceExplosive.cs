@@ -4,6 +4,7 @@ using System.ComponentModel;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 using Terraria.WorldBuilding;
@@ -85,14 +86,41 @@ namespace BoBo.Content.Items.Consumables
 			Item.height = 48;
 			Item.shoot = ModContent.ProjectileType<FierceExplosiveProjectile>();
 			Item.damage = 0;
+			Item.rare = ItemRarityID.LightRed;
 		}
-
 		//直接在鼠标位置生成弹幕
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			Vector2 mouseWorld = Main.MouseWorld;//获取鼠标在世界中的位置
 			Projectile.NewProjectile(source, mouseWorld, Vector2.Zero, type, damage, knockback, player.whoAmI);//直接在鼠标位置创建弹幕，不发射
 			return false;
+		}
+		public override void AddRecipes()
+		{
+			CreateRecipe(9999).AddRecipeGroup("BoBo.TeamBlockRecipeGroup", 1).AddTile(TileID.WorkBenches).Register();
+		}
+	}
+	public class PlatformSystem : ModSystem
+	{
+		public static LocalizedText TeamBlockRecipeGroup =
+			Language.GetOrRegister("Mods.BoBo.TeamBlockRecipeGroup",
+				() => $"{Language.GetTextValue("LegacyMisc.37")} 团队块");
+		public override void AddRecipeGroups()
+		{
+			RecipeGroup.RegisterGroup("BoBo.TeamBlockRecipeGroup", new(() => TeamBlockRecipeGroup.Value,
+				ItemID.TeamBlockRed,        //红色团队块
+				ItemID.TeamBlockGreen,      //绿色团队块
+				ItemID.TeamBlockBlue,       //蓝色团队块
+				ItemID.TeamBlockYellow,     //黄色团队块
+				ItemID.TeamBlockPink,       //粉色团队块
+				ItemID.TeamBlockWhite,      //白色团队块
+				ItemID.TeamBlockRed,        //暗淡红色团队块
+				ItemID.TeamBlockGreen,      //暗淡绿色团队块
+				ItemID.TeamBlockBlue,       //暗淡蓝色团队块
+				ItemID.TeamBlockYellow,     //暗淡黄色团队块
+				ItemID.TeamBlockPink,       //暗淡粉色团队块
+				ItemID.TeamBlockWhite       //暗淡白色团队块
+				));
 		}
 	}
 	public class FierceExplosiveProjectile : ModProjectile//没有创建消耗品的弹幕文件夹，就写这了

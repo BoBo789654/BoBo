@@ -14,7 +14,7 @@ namespace BoBo.Content.Accessories.FightAcc
             Item.width = 28;
             Item.height = 28;
             Item.accessory = true;
-			Item.rare = ItemRarityID.Green;
+			Item.rare = ItemRarityID.LightPurple;
 			Item.buffType = ModContent.BuffType<MagicalCircleBuff>();
         }
 

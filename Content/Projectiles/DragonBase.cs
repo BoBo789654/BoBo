@@ -22,7 +22,7 @@ namespace BoBo.Content.Projectiles
         public override string Texture => "Terraria/Images/Extra_98";
         public override void SetDefaults()
         {
-            Projectile.width = Projectile.height = 32;//正方碰撞箱
+            Projectile.width = Projectile.height = 24;//正方碰撞箱
             Projectile.penetrate = -1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;

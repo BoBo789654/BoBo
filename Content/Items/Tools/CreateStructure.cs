@@ -17,7 +17,7 @@ namespace BoBo.Content.Items.Tools
 			Item.useTime = 20;
 			Item.useAnimation = 20;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.rare = ItemRarityID.Green;
+			Item.rare = ItemRarityID.Gray;
 			Item.UseSound = SoundID.Item1;
 		}
 		public override bool? UseItem(Player player)
@@ -26,11 +26,7 @@ namespace BoBo.Content.Items.Tools
 			Vector2 mousePos = Main.MouseWorld;
 			Point origin = mousePos.ToTileCoordinates();
 			//调用建筑生成方法
-			ModContent.GetInstance<BoBoStructure>().GenerateSingleBuilding(origin.X, origin.Y);
-			for (int i = 0; i < 10; i++)
-			{
-				Dust.NewDust(mousePos, 10, 10, DustID.Firefly);
-			}
+			ModContent.GetInstance<BoBoStructure2>().GenerateSinglePalace(origin.X, origin.Y);
 			return true;
 		}
 	}

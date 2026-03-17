@@ -118,13 +118,22 @@ Configs: {
 			Tooltip: 是否消耗鱼饵
 		}
 	}
+
+	ShakingModConfig: {
+		EnableHurtScreenShake: {
+			Tooltip: 启用后，玩家受到伤害时屏幕会震动
+			Label: 屏幕受击摇晃
+		}
+
+		DisplayName: Shaking Mod Config
+	}
 }
 
 Projectiles: {
-	Tail.DisplayName: Tail
-	Head.DisplayName: Head
-	Body.DisplayName: Body
-	longMinion.DisplayName: long Minion
+	Tail.DisplayName: Tail❎❎❎
+	Head.DisplayName: Head☠️ ☠️ ☠️
+	Body.DisplayName: Body✅✅✅
+	longMinion.DisplayName: long Minion░ ░ ░ ░ ░ ░ ░
 	TerrorArrow2.DisplayName: Terror Arrow2
 	TerrorArrow.DisplayName: Terror Arrow
 	XianJian.DisplayName: Xian Jian
@@ -138,8 +147,6 @@ Projectiles: {
 	MagicalCircleProj.DisplayName: Magical Circle Proj
 	ThunderAccProj.DisplayName: Thunder Acc Proj
 	FierceExplosiveProjectile.DisplayName: Fierce Explosive Projectile
-	VenomSplash.DisplayName: Venom Splash
-	ToxicSplash.DisplayName: Toxic Splash
 	WormRay.DisplayName: Worm Ray
 	WarningLine.DisplayName: Warning Line
 	BatA.DisplayName: Bat A
@@ -150,6 +157,11 @@ Projectiles: {
 	LargeDesertTornado.DisplayName: Large Desert Tornado
 	DarkStarExplosionProj.DisplayName: Dark Star Explosion Proj
 	DarkStarExplosionProj2.DisplayName: Dark Star Explosion Proj2
+	HolyGuardianProj.DisplayName: Holy Guardian Proj
+	HolyGuardianProj2.DisplayName: Holy Guardian Proj2
+	ThunderflameProj.DisplayName: Thunderflame Proj
+	ToxicSplash.DisplayName: Toxic Splash
+	VenomSplash.DisplayName: Venom Splash
 }
 
 Prefixes: {
@@ -528,6 +540,16 @@ Items: {
 
 	ColorfulStaff: {
 		DisplayName: Colorful Staff
+		Tooltip: ""
+	}
+
+	HolyGuardian: {
+		Tooltip: ""
+		DisplayName: Holy Guardian
+	}
+
+	Thunderflame: {
+		DisplayName: Thunderflame
 		Tooltip: ""
 	}
 }

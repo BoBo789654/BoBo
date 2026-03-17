@@ -113,6 +113,7 @@ namespace BoBo.Content.Accessories.OtherAcc
 		{
 			// 我们不需要为该物品添加特别独特的属性；因此直接复制雷达的属性即可。
 			Item.CloneDefaults(ItemID.Radar);
+			Item.rare = ItemRarityID.White;
 		}
 
 		// 这是主要钩子，允许我们的信息显示与该饰品配合使用。

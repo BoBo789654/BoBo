@@ -16,7 +16,7 @@ namespace BoBo.Content.Accessories.FightAcc
 			Item.width = 34;
 			Item.height = 32;
 			Item.accessory = true;
-			Item.rare = ItemRarityID.Green;
+			Item.rare = ItemRarityID.LightRed;
 			Item.value = Item.sellPrice(3, 0, 0, 0);
 		}
 		public override void UpdateAccessory(Player player, bool hideVisual)

@@ -1,6 +1,6 @@
 displayName = BoBo
 author = BoBo
-version = 0.1
+version = 0.34
 hideCode = false
 hideResources = false
 weakReferences = SubworldLibrary

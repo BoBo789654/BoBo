@@ -26,7 +26,7 @@ namespace BoBo.Content.Items
 			Item.shoot = ModContent.ProjectileType<ReapingScytheProjectile>();
 			Item.knockBack = 6;
 			Item.value = Item.buyPrice(0, 20, 30, 40);
-			Item.rare = ItemRarityID.Pink;
+			Item.rare = ItemRarityID.Purple;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 			Item.noUseGraphic = true;

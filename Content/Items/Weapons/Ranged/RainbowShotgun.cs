@@ -25,7 +25,7 @@ namespace BoBo.Content.Items.Weapons.Ranged
 			Item.noMelee = true;
 			Item.knockBack = 6;
 			Item.value = Item.buyPrice(0, 20, 20, 20);
-			Item.rare = ItemRarityID.Green;
+			Item.rare = ItemRarityID.Master;
 			Item.UseSound = SoundID.Item36;
 			Item.autoReuse = true;
 			Item.shootSpeed = 15f;

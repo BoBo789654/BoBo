@@ -13,7 +13,7 @@ namespace BoBo.Content.Items.Ammos
 			Item.width = 14;
 			Item.height = 14;
 			Item.value = Item.sellPrice(copper: 1);
-			Item.rare = ItemRarityID.White;
+			Item.rare = ItemRarityID.Blue;
 			Item.maxStack = 9999;
 			Item.consumable = true;
 			Item.ammo = AmmoID.Bullet;

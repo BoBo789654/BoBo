@@ -19,7 +19,7 @@ namespace BoBo.Content.Items.Consumables
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.LifeFruit); //克隆生命果的属性
-			Item.rare = ItemRarityID.Lime; //可自定义稀有度
+			Item.rare = ItemRarityID.Red; //可自定义稀有度
 		}
 		public override bool CanUseItem(Player player)
 		{

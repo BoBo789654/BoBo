@@ -20,7 +20,7 @@ namespace BoBo.Content.Items.Consumables
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.ManaCrystal); //克隆魔力水晶属性
-			Item.rare = ItemRarityID.Pink; //可自定义稀有度
+			Item.rare = ItemRarityID.Yellow; //可自定义稀有度
 		}
 		public override bool CanUseItem(Player player)
 		{

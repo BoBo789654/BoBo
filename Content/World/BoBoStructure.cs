@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.IO;
@@ -25,7 +23,7 @@ namespace BoBo.Content.World
 		}
 		private void GenerateHellStructures(GenerationProgress progress, GameConfiguration config)
 		{
-			progress.Message = "生成BoBo建筑";//设置进度条显示文本
+			progress.Message = "生成BoBo建筑1";//设置进度条显示文本
 			int count = WorldGen.genRand.Next(1, 3);//随机生成随机个建筑
 			for (int i = 0; i < count; i++)
 			{

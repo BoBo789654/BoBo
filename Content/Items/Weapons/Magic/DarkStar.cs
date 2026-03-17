@@ -25,7 +25,7 @@ namespace BoBo.Content.Items.Weapons.Magic
 			Item.shootSpeed = 16f;
 			Item.knockBack = 4f;
 			Item.value = Item.sellPrice(0, 5, 0, 0);
-			Item.rare = ItemRarityID.Blue;
+			Item.rare = ItemRarityID.Purple;
 			Item.channel = true;
 			Item.UseSound = SoundID.Item8;
 			Item.staff[Type] = true;

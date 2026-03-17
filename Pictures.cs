@@ -15,7 +15,8 @@ namespace BoBo
         #region ¶þ¼¶
         public const string Acc = "BoBo/Asset/Accessories/";
         public const string Buff = "BoBo/Asset/Buffs/";
-        public const string Item = "BoBo/Asset/Items/";
+		public const string Dust = "BoBo/Asset/Dusts/";
+		public const string Item = "BoBo/Asset/Items/";
         public const string Proj = "BoBo/Asset/Projectiles/";
         public const string UIs = "BoBo/Asset/UIs/";
         public const string NPCs = "BoBo/Asset/NPCs/";

@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BoBo.Content.Systems;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
@@ -11,164 +13,282 @@ namespace BoBo.Content.Projectiles.Weapons.Melee
 {
 	public class XianJian : ModProjectile
 	{
-		private int TextureType;//贴图类型
-		private Vector2 StartPos;//起始位置
-		private bool IsMoving;//运动状态
-		private const int ParticleCount = 8;//粒子数量
-		private readonly Color[] SwordColors =
-		[
-			new Color(0, 150, 255),//蓝
-			new Color(50, 255, 100),//绿
-			new Color(255, 50, 50),//红
-			new Color(255, 255, 0)//黄
-		];
-		private NPC TargetNPC => Main.npc[(int)Projectile.ai[0]];//0控目标
-		private float Alpha//1控透明度
+		//弹幕状态变量
+		private int TextureType;                //贴图类型 (0-3)
+		private Vector2 StartPos;               //起始位置
+		private float OrbitAngle;               //当前圆轨迹角度
+		private float OrbitRadius = 500f;       //圆轨迹半径
+		private float OrbitSpeed;               //转圈速度
+		private int OrbitDirection;             //转圈方向，1=逆时针，-1=顺时针
+		private int ChargePhaseTime = 150;       //冲锋阶段持续时间
+		private static readonly Color[] SwordColors = [//颜色数组
+			new Color(0, 150, 255),				//蓝色
+            new Color(50, 255, 100),			//绿色
+            new Color(255, 50, 50),				//红色
+            new Color(255, 255, 0)				//黄色
+        ];
+		private static readonly int[] DustTypes = [15, 61, 90, 204];//粒子数组
+		//拖尾参数
+		private float TrailWidth = 20f;//拖尾基础宽度
+		//拖尾颜色
+		private Color TrailColor1 => SwordColors[TextureType];
+		private Color TrailColor2 => new Color(TrailColor1.R, TrailColor1.G, TrailColor1.B, 0);
+		private NPC TargetNPC => Main.npc[(int)Projectile.ai[0]];//目标NPC
+		private float Alpha//透明度
 		{
 			get => Projectile.ai[1];
 			set => Projectile.ai[1] = value;
 		}
-		private float Angle => Projectile.ai[2];//2控角度
+		private float InitialAngle => Projectile.ai[2];//初始角度
 		public override string Texture => $"BoBo/Asset/Projectiles/Weapons/Melee/XianJian{TextureType}";
-		private static readonly int[] DustTypes = [15, 61, 90, 204];
 		public override void SetDefaults()
 		{
 			Projectile.width = Projectile.height = 32;
 			Projectile.friendly = true;
 			Projectile.tileCollide = false;
 			Projectile.ignoreWater = true;
-			Projectile.timeLeft = 140;
+			Projectile.timeLeft = 300;
 			Projectile.aiStyle = -1;
 			Projectile.penetrate = 1;
-		}
-		private Vector2 CalculateStartPosition()
-		{
-			const float Distance = 400f;
-			Vector2 basePos = TargetNPC.Center;
-			return basePos + new Vector2(Distance * MathF.Cos(Angle), -Distance * MathF.Sin(Angle));
+			Projectile.oldPos = new Vector2[20];
+			Projectile.oldRot = new float[20];
+			for (int i = 0; i < Projectile.oldPos.Length; i++)
+			{
+				Projectile.oldPos[i] = Projectile.position;
+				Projectile.oldRot[i] = Projectile.rotation;
+			}
 		}
 		public override void OnSpawn(IEntitySource source)
 		{
-			TextureType = Main.rand.Next(0, 4);
-			Alpha = 0f;
-			StartPos = CalculateStartPosition();
+			if (TargetNPC == null || !TargetNPC.active)
+			{
+				Projectile.Kill();//无效目标则立即销毁
+				return;
+			}
+			TextureType = Main.rand.Next(0, 4);//随机选择剑的类型 (0-3)
+			Alpha = 0f;//设置初始透明度
+			OrbitAngle = InitialAngle;//初始化圆轨迹角度
+			OrbitSpeed = Main.rand.NextFloat(1.0f, 4.0f);//随机转圈速度
+			OrbitDirection = Main.rand.Next(2) == 0 ? 1 : -1;//随机转圈方向
+			Vector2 direction = new Vector2(//计算圆轨迹上的起始位置
+				(float)Math.Cos(OrbitAngle),
+				(float)Math.Sin(OrbitAngle)
+			);//公式：目标中心 + 半径 * (cos(角度), sin(角度))
+			StartPos = TargetNPC.Center + direction * OrbitRadius;
+			Projectile.Center = StartPos;//设置初始位置和旋转
 			Projectile.rotation = (TargetNPC.Center - StartPos).ToRotation() + MathHelper.PiOver4;
 		}
 		public override void AI()
 		{
-			if (!TargetNPC.active || TargetNPC.life <= 0)//目标失效
+			if (!TargetNPC.active || TargetNPC.life <= 0)
 			{
 				Projectile.Kill();
 				return;
 			}
-			Color swordColor = SwordColors[TextureType];
-			if (Projectile.timeLeft > 100)//渐显悬停
+			UpdateTrailHistory();//更新拖尾历史位置
+			//分阶段
+			if (Projectile.timeLeft > 180)//沿圆轨迹运动
+				HandleOrbitPhase();
+			else if (Projectile.timeLeft > 150)//冲向目标
 			{
-				Projectile.Center = StartPos;
-				Projectile.rotation = (TargetNPC.Center - StartPos).ToRotation() + MathHelper.PiOver4;
-				Alpha = MathHelper.Clamp(Alpha + 0.025f, 0f, 1f);
-				if (Main.rand.NextBool(4))
-				{
-					int DustType = DustTypes[TextureType];
-					Dust Dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustType);
-					Dust.color = swordColor;
-					Dust.noGravity = true;
-					Dust.scale = 1.1f;
-					Dust.alpha = (int)(200 * (1 - Alpha));
-				}
-			}
-			else if (Projectile.timeLeft > 60)//穿刺运动
-			{
-				if (!IsMoving)
-				{
-					IsMoving = true;
-					StartPos = Projectile.Center;
-				}
-				float progress = 1 - (Projectile.timeLeft - 60) / 40f;
-				float easedProgress = progress < 0.5f ? 2 * progress * progress : 1 - MathF.Pow(-2 * progress + 2, 2) / 2;
-				Projectile.Center = Vector2.Lerp(StartPos, TargetNPC.Center, easedProgress);
-				Vector2 dir = (TargetNPC.Center - StartPos).SafeNormalize(Vector2.UnitY);
-				Projectile.rotation = dir.ToRotation() + MathHelper.PiOver4;
-				if (Main.rand.NextBool(3))
-				{
-					int DustType = DustTypes[TextureType];
-					Dust Dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustType);
-					Dust.color = swordColor;
-					Dust.noGravity = true;
-					Dust.scale = 1.3f;
-					Dust.velocity = dir * -2f;
-				}
+				HandleChargePhase(); 
+				ChargePhaseTime--;
 			}
 			else//渐隐消失
+				HandleFadePhase();
+			SpawnVisualParticles();//生成视觉特效粒子
+		}
+		private void UpdateTrailHistory()
+		{
+			if (Projectile.oldPos == null || Projectile.oldPos.Length == 0) return;
+			for (int i = Projectile.oldPos.Length - 1; i > 0; i--)
+				Projectile.oldPos[i] = Projectile.oldPos[i - 1];
+			Projectile.oldPos[0] = Projectile.Center;
+			for (int i = Projectile.oldRot.Length - 1; i > 0; i--)
+				Projectile.oldRot[i] = Projectile.oldRot[i - 1];
+			Projectile.oldRot[0] = Projectile.rotation;
+		}
+		private void HandleOrbitPhase()//圆轨迹阶段
+		{
+			Alpha = Math.Min(Alpha + 0.02f, 1f);//增加透明度
+			OrbitAngle += MathHelper.ToRadians(OrbitSpeed) * OrbitDirection;//使用随机方向和随机速度增加圆轨迹角度
+			Vector2 direction = new Vector2((float)Math.Cos(OrbitAngle), (float)Math.Sin(OrbitAngle));//计算圆轨迹上的新位置
+			Vector2 newPosition = TargetNPC.Center + direction * OrbitRadius;
+			Projectile.Center = Vector2.Lerp(Projectile.Center, newPosition, 0.1f);//平滑移动到新位置
+			Vector2 toTarget = TargetNPC.Center - Projectile.Center;//设置旋转方向指向目标
+			Projectile.rotation = toTarget.ToRotation() + MathHelper.PiOver4;
+			OrbitRadius = MathHelper.Lerp(OrbitRadius, OrbitRadius - 200, 0.005f);//减小圆轨迹半径，逐渐靠近目标
+			//根据转圈速度调整拖尾宽度：转得越快，拖尾越长
+			float speedFactor = OrbitSpeed / 4.0f;//归一化速度
+			float targetTrailWidth = 20f + 10f * speedFactor;//速度增加
+			TrailWidth = MathHelper.Lerp(TrailWidth, targetTrailWidth, 0.05f);
+		}
+		private void HandleChargePhase()//冲锋阶段
+		{
+			float timeRatio = ChargePhaseTime / 150f;
+			float waveProgress = (float)Math.Sin(timeRatio * MathHelper.Pi * 2f) * 0.5f + 1f;//计算冲锋进度
+			Projectile.Center = Vector2.Lerp(Projectile.Center, TargetNPC.Center, waveProgress * 0.12f);//使用缓动函数使运动更平滑
+																										//float progress = 1f - (ChargePhaseTime - 60) / 60f;//计算冲锋进度
+																										//float EasedProgress = 1f - (float)Math.Pow(1f - progress, 3);//使用缓动函数使运动更平滑
+																										//Projectile.Center = Vector2.Lerp(Projectile.Center, TargetNPC.Center, EasedProgress * 0.04f);//向目标位置移动
+			Vector2 toTarget = TargetNPC.Center - Projectile.Center;//保持指向目标的旋转
+			Projectile.rotation = toTarget.ToRotation() + MathHelper.PiOver4;
+			TrailWidth = MathHelper.Lerp(TrailWidth, 40f, 0.1f);//增加拖尾宽度
+		}
+		private void HandleFadePhase()//渐隐阶段
+		{
+			Projectile.Center = TargetNPC.Center;//停留在目标位置
+			Alpha = Math.Max(Alpha - 0.02f, 0f);//减少透明度
+			TrailWidth = MathHelper.Lerp(TrailWidth, 5f, 0.1f);//减少拖尾宽度
+		}
+		
+		private void SpawnVisualParticles()//生成粒子
+		{
+			if (Main.rand.NextBool(5))//概率生成粒子
 			{
-				Projectile.Center = TargetNPC.Center;
-				Alpha = MathHelper.Clamp(Alpha - 0.0167f, 0f, 1f);
+				int dustType = DustTypes[TextureType];
+				Color color = SwordColors[TextureType];
+				
+				Vector2 velocityDirection = (TargetNPC.Center - Projectile.Center).SafeNormalize(Vector2.Zero);//根据转圈方向调整粒子速度方向
+				
+				if (OrbitDirection == -1)//如果是顺时针转圈，粒子方向也顺时针偏转
+					velocityDirection = velocityDirection.RotatedBy(MathHelper.PiOver2 * 0.3f);
+				else//如果是逆时针转圈，粒子方向也逆时针偏转
+					velocityDirection = velocityDirection.RotatedBy(-MathHelper.PiOver2 * 0.3f);
+				Dust dust = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(10f, 10f),
+					dustType, velocityDirection * -2f * (OrbitSpeed / 2.5f),//匹配，速度越快，粒子速度越快
+					100, color,  Main.rand.NextFloat(0.8f, 1.5f)
+				);
+				dust.noGravity = true;
 			}
 		}
 		public override bool PreDraw(ref Color lightColor)
 		{
-			string texturePath = $"BoBo/Asset/Projectiles/Weapons/Melee/XianJian{TextureType}";
-			Texture2D texture = ModContent.Request<Texture2D>(texturePath).Value;
-			Vector2 origin = new(texture.Width / 2, texture.Height / 2);
-			Vector2 DrawPos = Projectile.Center - Main.screenPosition;
-			Main.EntitySpriteDraw(texture, DrawPos, null, new Color(255, 255, 255, 0) * Alpha,
-				Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+			DrawTrail();//绘制拖尾
+			DrawProjectileBody();//绘制弹幕本体
 			return false;
+		}
+		private void DrawTrail()//绘制拖尾特效
+		{
+			if (Alpha <= 0.01f) return;
+			if (Projectile.oldPos == null || Projectile.oldPos.Length < 2) return;
+			Texture2D texture = ModContent.Request<Texture2D>($"BoBo/Asset/Projectiles/Weapons/Melee/XianJian{TextureType}",
+				ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+			if (texture == null || texture.IsDisposed) return;
+			//创建顶点列表
+			List<CustomVertexInfo> vertices = new List<CustomVertexInfo>();
+			//遍历历史位置创建拖尾
+			for (int i = 0; i < Projectile.oldPos.Length; i++)
+			{
+				if (Projectile.oldPos[i] == Vector2.Zero) break;
+				//计算拖尾参数
+				float factor = i / (float)Projectile.oldPos.Length;
+				float alpha = Alpha * (1f - factor) * 0.7f;
+				//根据转圈速度调整拖尾长度：速度越快，拖尾越长
+				float speedFactor = OrbitSpeed / 4.0f;
+				float width = TrailWidth * (1f - factor) * Projectile.scale * (1.0f + speedFactor * 0.5f);
+				//计算颜色
+				Color color = Color.Lerp(TrailColor1, TrailColor2, factor);
+				color *= alpha;
+				//获取当前位置和旋转
+				Vector2 currentPos = Projectile.oldPos[i];
+				float currentRotation = Projectile.rotation;
+				if (i < Projectile.oldRot.Length)
+					currentRotation = Projectile.oldRot[i];
+				//计算拖尾的两个边缘点
+				float cos = (float)Math.Cos(currentRotation + MathHelper.PiOver2);
+				float sin = (float)Math.Sin(currentRotation + MathHelper.PiOver2);
+				Vector2 perpendicular = new Vector2(cos, sin);
+				Vector2 pos1 = currentPos + perpendicular * width;
+				Vector2 pos2 = currentPos - perpendicular * width;
+				//转换为屏幕坐标并添加顶点
+				vertices.Add(new CustomVertexInfo(pos1 - Main.screenPosition, color, new Vector3(factor, 1, 1)));
+				vertices.Add(new CustomVertexInfo(pos2 - Main.screenPosition, color, new Vector3(factor, 0, 1)));
+			}
+			if (vertices.Count >= 4)//如果有足够顶点则绘制
+				DrawTrailPrimitives(vertices, texture);
+		}
+		private void DrawTrailPrimitives(List<CustomVertexInfo> vertices, Texture2D texture)//绘制拖尾基元
+		{
+			Main.spriteBatch.End();//保存原始SpriteBatch状态
+			Main.spriteBatch.Begin(
+				SpriteSortMode.Immediate,
+				BlendState.Additive,
+				SamplerState.LinearClamp,
+				DepthStencilState.None,
+				RasterizerState.CullNone,
+				null,
+				Main.GameViewMatrix.TransformationMatrix
+			);//使用加法混合绘制拖尾
+			try
+			{
+				var shader = Terraria.Graphics.Effects.Filters.Scene["MagicMissile"]?.GetShader();//应用MagicMissile着色器
+				if (shader != null)
+				{
+					var projection = Matrix.CreateOrthographicOffCenter(0, Main.screenWidth, Main.screenHeight, 0, 0, 1);
+					var model = Matrix.CreateTranslation(new Vector3(-Main.screenPosition.X, -Main.screenPosition.Y, 0));
+
+					shader.Shader.Parameters["transformMatrix"]?.SetValue(model * projection);
+					shader.Apply();
+				}
+				if (Main.graphics.GraphicsDevice != null && !Main.graphics.GraphicsDevice.IsDisposed)//绘制拖尾
+				{
+					Main.graphics.GraphicsDevice.Textures[0] = texture;
+					Main.graphics.GraphicsDevice.DrawUserPrimitives(
+						PrimitiveType.TriangleStrip,
+						vertices.ToArray(),
+						0,
+						Math.Max(0, vertices.Count - 2)
+					);
+				}
+			}
+			finally
+			{
+				//恢复原始SpriteBatch状态
+				Main.spriteBatch.End();
+				Main.spriteBatch.Begin(
+					SpriteSortMode.Deferred,
+					BlendState.AlphaBlend,
+					Main.DefaultSamplerState,
+					DepthStencilState.None,
+					Main.Rasterizer,
+					null,
+					Main.GameViewMatrix.TransformationMatrix
+				);
+			}
+		}
+		private void DrawProjectileBody()//绘制弹幕本体
+		{
+			Texture2D texture = ModContent.Request<Texture2D>($"BoBo/Asset/Projectiles/Weapons/Melee/XianJian{TextureType}").Value;
+			if (texture == null || texture.IsDisposed) return;
+			Vector2 origin = new Vector2(texture.Width / 2, texture.Height / 2);
+			Vector2 drawPosition = Projectile.Center - Main.screenPosition;
+			Main.EntitySpriteDraw(texture, drawPosition, null, Color.White * Alpha, 
+				Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
 		}
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			if (target != TargetNPC) return;
-			Projectile.velocity = Vector2.Zero;
-			Projectile.damage = 0;
-			Projectile.timeLeft = 60;
-			if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(4))
-			{
-				CreateParticles(target);
-			}
+			if (target != TargetNPC) return;//只对目标NPC有效
+			Projectile.velocity = Vector2.Zero;//停止移动
+			Projectile.damage = 0;//避免多次伤害
+			if (Main.netMode != NetmodeID.Server)//如果不在服务器端，生成击中粒子
+				CreateHitParticles(target);
 		}
-		private void CreateParticles(NPC target)
+		private void CreateHitParticles(NPC target)//创建击中粒子特效
 		{
-			Vector2 swordDirection = (Projectile.rotation - MathHelper.PiOver4).ToRotationVector2();
 			Color swordColor = SwordColors[TextureType];
-			const int segmentCount = 15;//刀光线段数
-			const float totalLength = 80f;//刀光总长度
-			float segmentLength = totalLength / segmentCount;
-			float speedMultiplier = Main.rand.NextFloat(1.8f, 3f);//动态速度系数
-			for (int i = 0; i < segmentCount; i++)
+			int dustType = DustTypes[TextureType];
+			for (int i = 0; i < 12; i++)//生成爆炸粒子
 			{
-				Vector2 basePos = Projectile.Center + swordDirection * (i * segmentLength);//沿剑方向线性分布粒子
-				Vector2 randomOffset = Main.rand.NextVector2Circular(3f, 3f);//随机性
-				Vector2 position = basePos + randomOffset;
-				float sizeProgress = i / (float)segmentCount;//渐变
-				float scale = MathHelper.Lerp(1.8f, 0.6f, sizeProgress);//大->小
-				float alpha = MathHelper.Lerp(0.3f, 0.9f, sizeProgress); //多->少
-				Dust dust = Dust.NewDustPerfect(position, DustTypes[TextureType], Velocity: swordDirection.RotatedByRandom(0.3f) *
-							 Main.rand.NextFloat(3f, 8f) * speedMultiplier, Alpha: (int)(255 * alpha),
-					newColor: swordColor, Scale: scale);
+				Dust dust = Dust.NewDustPerfect(target.Center + Main.rand.NextVector2Circular(20f, 20f),
+					dustType, Main.rand.NextVector2Circular(6f, 6f), 100, swordColor, Main.rand.NextFloat(1.2f, 2f));
 				dust.noGravity = true;
-				dust.fadeIn = 1.2f;//淡入效果增强动态感
-				//剑尖追加高亮粒子
-				if (sizeProgress > 0.8f && Main.rand.NextBool(4))
-				{
-					Dust.NewDustPerfect(position, DustTypes[TextureType], Velocity: swordDirection * 12f + Main.rand.NextVector2Circular(4f, 4f),
-						newColor: Color.Lerp(swordColor, Color.White, 0.7f), Scale: 1.5f).noGravity = true;
-				}
 			}
-			for (int i = 0; i < 5; i++)
+			Vector2 direction = (Projectile.rotation - MathHelper.PiOver4).ToRotationVector2();
+			for (int i = 0; i < 8; i++)//生成轨迹粒子
 			{
-				Vector2 trailPos = Projectile.Center - swordDirection * (i * 8f);
-				Dust.NewDustPerfect(trailPos, DustTypes[TextureType], Velocity: -swordDirection * 4f + Main.rand.NextVector2Circular(3f, 3f),
-					newColor: Color.Lerp(swordColor, Color.Cyan, 0.5f), Scale: Main.rand.NextFloat(1.2f, 2f)).noGravity = true;
-			}
-		}
-		public static void SummonSwords(Player player, NPC target)
-		{
-			float[] angles = [MathHelper.ToRadians(-35f), MathHelper.ToRadians(-15f), MathHelper.ToRadians(15f), MathHelper.ToRadians(35f)];
-			for (int i = 0; i < 4; i++)
-			{
-				Projectile.NewProjectile(player.GetSource_ItemUse(player.HeldItem), target.Center, Vector2.Zero,
-					ModContent.ProjectileType<XianJian>(), player.GetWeaponDamage(player.HeldItem),
-					0, player.whoAmI, target.whoAmI, ai2: angles[i]);
+				Dust.NewDustPerfect(target.Center - direction * (i * 10f), dustType, -direction * 5f + Main.rand.NextVector2Circular(3f, 3f),
+					newColor: Color.Lerp(swordColor, Color.Cyan, 0.5f), Scale: Main.rand.NextFloat(1f, 1.5f)).noGravity = true;
 			}
 		}
 		#region 联机同步
@@ -176,58 +296,19 @@ namespace BoBo.Content.Projectiles.Weapons.Melee
 		{
 			writer.Write(TextureType);
 			writer.WriteVector2(StartPos);
-			writer.Write(IsMoving);
+			writer.Write(OrbitAngle);
+			writer.Write(OrbitSpeed);
+			writer.Write(OrbitDirection);
 		}
 
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
 			TextureType = reader.ReadInt32();
 			StartPos = reader.ReadVector2();
-			IsMoving = reader.ReadBoolean();
+			OrbitAngle = reader.ReadSingle();
+			OrbitSpeed = reader.ReadSingle();
+			OrbitDirection = reader.ReadInt32();
 		}
 		#endregion
 	}
 }
-
-/*心形粒子
-private void CreateParticles(NPC target)//撞上之后的粒子
-		{
-			static Vector2 CalculateHeartPoint(float t, float size)
-			{
-				float x = 30 * MathF.Pow(MathF.Sin(t), 3);
-				float y = -(25 * MathF.Cos(t) - 8 * MathF.Cos(2 * t) - 3 * MathF.Cos(3 * t) - MathF.Cos(4 * t));
-				return new Vector2(x, y) * size;
-			}
-			Color color = SwordColors[TextureType];
-			float baseSize = Main.rand.NextBool(4) ? 0.8f : 0.4f;//尺寸放大
-			int scaledParticleCount = (int)(ParticleCount * 2.0f);//增加粒子密度填充放大后的爱心轮廓
-			for (int i = 0; i < scaledParticleCount; i++)
-			{
-				float t = MathHelper.TwoPi * i / scaledParticleCount;
-				Vector2 heartPoint = CalculateHeartPoint(t, baseSize);
-				//扩大随机偏移范围
-				Vector2 randomOffset = Main.rand.NextVector2Circular(6f, 6f);
-				Vector2 position = Projectile.Center + heartPoint + randomOffset;
-				//特殊爱心使用更亮颜色
-				Color particleColor = Main.rand.NextBool(4) ? Color.Lerp(color, Color.White, 0.3f) : color;
-				int DustType = DustTypes[TextureType];
-				Dust Dust = Dust.NewDustPerfect(position, DustType, Vector2.Zero,
-					newColor: particleColor, Scale: Main.rand.NextBool(4) ? 2.8f : 2.0f);
-				Dust.noGravity = true;//增强粒子运动速度以适应大尺寸
-				Dust.velocity = Vector2.UnitY * -Main.rand.NextFloat(2f, 5f) + heartPoint * 0.08f;//加速上浮+扩散
-			}
-			if (Main.rand.NextBool(4))//特殊爱心中心闪光
-			{
-				for (int i = 0; i < 8; i++)//增加粒子数量
-				{
-					Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(20f, 20f), DustTypes[TextureType], 
-						Main.rand.NextVector2Circular(5f, 5f), newColor: Color.Lerp(color, Color.White, 0.7f), Scale: 3.2f).noGravity = true;
-				}
-				for (int i = 0; i < 12; i++)//爱心轮廓
-				{
-					float t = MathHelper.TwoPi * i / 12;
-					Vector2 EdgePos = Projectile.Center + CalculateHeartPoint(t, baseSize);
-					Dust.NewDustPerfect(EdgePos, DustTypes[TextureType], Vector2.Zero, newColor: Color.White, Scale: 3.0f).noGravity = true;
-				}
-			}
-		}*/

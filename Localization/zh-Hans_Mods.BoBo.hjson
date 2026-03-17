@@ -118,38 +118,50 @@ Configs: {
 			Tooltip: 是否消耗鱼饵（没做好）
 		}
 	}
+
+	ShakingModConfig: {
+		EnableHurtScreenShake: {
+			Tooltip: 启用后，玩家受到伤害时屏幕会震动
+			Label: 屏幕受击摇晃
+		}
+
+		DisplayName: 屏幕摇晃设置
+	}
 }
 
 Projectiles: {
-	Tail.DisplayName: Tail❎❎❎
-	Head.DisplayName: Head☠️ ☠️ ☠️
-	Body.DisplayName: Body✅✅✅
-	longMinion.DisplayName: long Minion░ ░ ░ ░ ░ ░ ░
-	TerrorArrow2.DisplayName: Terror Arrow2
-	TerrorArrow.DisplayName: Terror Arrow
-	XianJian.DisplayName: Xian Jian
-	ReapingScytheProjectile.DisplayName: Reaping Scythe Projectile
-	ExplosionProj2.DisplayName: Explosion Proj2
-	ExplosionProj.DisplayName: Explosion Proj
-	DarkStarProj.DisplayName: Dark Star Proj
-	VastWaveBobber.DisplayName: Vast Wave Bobber
-	BubbleShield.DisplayName: Bubble Shield
-	BubbleBurst.DisplayName: Bubble Burst
-	MagicalCircleProj.DisplayName: Magical Circle Proj
-	ThunderAccProj.DisplayName: Thunder Acc Proj
-	FierceExplosiveProjectile.DisplayName: Fierce Explosive Projectile
-	VenomSplash.DisplayName: Venom Splash
-	ToxicSplash.DisplayName: Toxic Splash
-	WormRay.DisplayName: Worm Ray
-	WarningLine.DisplayName: Warning Line
-	BatA.DisplayName: Bat A
-	BatB.DisplayName: Bat B
-	BatC.DisplayName: Bat C
-	// BulletAProj.DisplayName: Bullet A Proj
-	// BubbleShieldCrack.DisplayName: Bubble Shield Crack
-	// LargeDesertTornado.DisplayName: Large Desert Tornado
-	// DarkStarExplosionProj.DisplayName: Dark Star Explosion Proj
-	// DarkStarExplosionProj2.DisplayName: Dark Star Explosion Proj2
+	Tail.DisplayName: 弹幕
+	Head.DisplayName: 弹幕
+	Body.DisplayName: 弹幕
+	longMinion.DisplayName: 弹幕
+	TerrorArrow2.DisplayName: 弹幕
+	TerrorArrow.DisplayName: 弹幕
+	XianJian.DisplayName: 弹幕
+	ReapingScytheProjectile.DisplayName: 弹幕
+	ExplosionProj2.DisplayName: 弹幕
+	ExplosionProj.DisplayName: 弹幕
+	DarkStarProj.DisplayName: 弹幕
+	VastWaveBobber.DisplayName: 弹幕
+	BubbleShield.DisplayName: 弹幕
+	BubbleBurst.DisplayName: 弹幕
+	MagicalCircleProj.DisplayName: 弹幕
+	ThunderAccProj.DisplayName: 弹幕
+	FierceExplosiveProjectile.DisplayName: 弹幕
+	WormRay.DisplayName: 弹幕
+	WarningLine.DisplayName: 弹幕
+	BatA.DisplayName: 弹幕
+	BatB.DisplayName: 弹幕
+	BatC.DisplayName: 弹幕
+	BulletAProj.DisplayName: 弹幕
+	BubbleShieldCrack.DisplayName: 弹幕
+	LargeDesertTornado.DisplayName: 弹幕
+	DarkStarExplosionProj.DisplayName: 弹幕
+	DarkStarExplosionProj2.DisplayName: 弹幕
+	HolyGuardianProj.DisplayName: 弹幕
+	HolyGuardianProj2.DisplayName: 弹幕
+	ThunderflameProj.DisplayName: 弹幕
+	ToxicSplash.DisplayName: 弹幕
+	VenomSplash.DisplayName: 弹幕
 }
 
 Prefixes: {
@@ -212,7 +224,7 @@ Items: {
 	}
 
 	VastWaveFishingRod: {
-		Tooltip: 好多好多条线
+		Tooltip: 好多好多条线，模组设置里可以调鱼线数量和渔力
 		DisplayName: 波浪钓竿
 	}
 
@@ -516,13 +528,15 @@ Items: {
 		Tooltip:
 			'''
 			[c/FFD700:★★★][c/DAA520:☆☆]
-			[c/BA55D3:⚡「雷电的力量」⚡]
-			[c/A03CFF:■ 雷之尾] [c/A03CFF:受击时获得1条][c/5D3FD3:雷之尾⚡][c/808080:（上限9层）]
-			[c/9370DB:■ 雷净化] [c/9370DB:免疫所有原版异常状态与减益，受伤恢复5倍][c/5D3FD3:⚡层数][c/9370DB:血量]
-			[c/CCCCFF:每层效果：][c/CCCCFF:+3 防御] [c/CCCCFF:+5% 魔法伤害] [c/CCCCFF:+5% 魔法暴击]
-			[c/DA70D6:■ 雷之盾：][c/DA70D6:大于150的单次伤害，会将过量的减伤数倍，并会随][c/5D3FD3:⚡层数][c/DA70D6:增加效果增加]
-			[c/FF69B4:■ 雷治愈：][c/FF69B4:魔法伤害5%用于恢复魔力]
-			[c/C3B1E1:■ 雷锁链：][c/5D3FD3:每层⚡][c/C3B1E1:增加0.5%概率触发][c/C3B1E1:额外闪电攻击]
+			[c/BA55D3:⚡「雷电的力量」⚡][c/CCCCFF:                                    ][c/5D3FD3:⚡雷电之尾⚡]
+			[c/A03CFF:■ 雷电之尾] [c/A03CFF:受击时获得1条][c/5D3FD3:⚡雷电之尾⚡][c/808080:上限为9层][c/5D3FD3:⚡层数⚡]
+			[c/9370DB:■ 雷电净化] [c/9370DB:免疫所有原版异常状态与减益，受伤时恢复5倍][c/5D3FD3:⚡层数⚡][c/9370DB:血量]
+			[c/CCCCFF:■ ][c/CCCCFF:每层][c/5D3FD3:⚡层数⚡][c/CCCCFF:效果：][c/CCCCFF:+3 防御；+5% 魔法伤害；+5% 魔法暴击；+5% 魔法武器攻速]
+			[c/DA70D6:■ 雷电之盾：][c/DA70D6:大于150的单次伤害，会将过量的减伤数倍，并会随][c/5D3FD3:⚡层数⚡][c/DA70D6:增加效果增加]-------这一行暂时做不到
+			[c/FF69B4:■ 雷电治愈：][c/FF69B4:魔法伤害5%用于恢复魔力（0.5秒冷却）]
+			[c/C3B1E1:■ 雷电锁链：][c/C3B1E1:每层][c/5D3FD3:⚡层数⚡][c/C3B1E1:增加1.5%概率触发额外闪电攻击]
+			[c/DDA0DD:■ 雷电套装：][c/DDA0DD:若穿着星云套装，雷电之尾的][c/5D3FD3:⚡层数⚡][c/808080:上限增加到11层]
+			[c/9932CC:■ 雷电：][c/9932CC:会显示伤害来源]
 			'''
 	}
 
@@ -652,7 +666,7 @@ Items: {
 
 	BatSummoningStaffC: {
 		DisplayName: 绿蝙蝠召唤杖
-		Tooltip: 召唤一只绿蝙蝠，排队很有意思，12只以上就会换一行
+		Tooltip: 召唤一只绿蝙蝠，排队很有意思，每12只就会换一行
 	}
 
 	BulletA: {
@@ -683,6 +697,27 @@ Items: {
 			轮流发射21种受魔法伤害加成影响的弹幕
 			轮流发射21种受魔法伤害加成影响的弹幕
 			轮流发射21种受魔法伤害加成影响的弹幕
+			'''
+	}
+
+	HolyGuardian: {
+		Tooltip:
+			'''
+			[c/FFD700:★][c/DAA520:☆☆☆☆]
+			[c/FF6347:杀死敌怪后，生成一个上抛的血瓶，砸到地面，可使范围内友方回][c/90EE90:25][c/FF6347:血]
+			[c/FFA500:刷小怪好用]
+			'''
+		DisplayName: 圣灵之护
+	}
+
+	Thunderflame: {
+		DisplayName: 雷电之焰
+		Tooltip:
+			'''
+			[c/F1C27D:可不蓄力以便连续使用，造成一次闪电攻击]
+			[c/00FFFF:长按可蓄力一次，释放较大的闪电攻击，但会消耗额外魔力]
+			[c/9370DB:可进一步蓄力，使用更大范围的雷击，但会消耗更多魔力]
+			[c/00BFFF:魔力不足时不可使用]
 			'''
 	}
 }

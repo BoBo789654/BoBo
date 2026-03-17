@@ -1,1 +1,9 @@
-Modify this file with a description of your mod.
+做一个模组，主要是方便自己，里面有一键搭平台，很好用的。
+还有一些随便想的东西，都很好玩。
+不仅有模仿原版做出的武器、饰品，还有很多新奇的武器，特效。
+一般也不会有人来，所以就不写了。
+
+This mod is primarily crafted for my own convenience, featuring a handy one-click platform builder. 
+It also includes various random additions that are all quite fun.
+Not only are there weapons and accessories that mimic the original game, but also many novel weapons and special effects. 
+Since it's not typically intended for widespread use, I'll keep the description brief.

@@ -15,7 +15,7 @@ namespace BoBo.Content.Accessories.CardAcc
 			Item.width = 48;
 			Item.height = 60;
 			Item.accessory = true;
-			Item.rare = ItemRarityID.Blue;
+			Item.rare = ItemRarityID.Master;
 			Item.maxStack = 9999;
 			Item.value = Item.sellPrice(999, 0, 0, 0);
 		}

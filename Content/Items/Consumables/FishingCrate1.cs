@@ -27,7 +27,7 @@ namespace BoBo.Content.Items.Consumables
 			Item.DefaultToPlaceableTile(TileID.FishingCrate); //使用原版板条箱的放置物块
 			Item.width = 12;
 			Item.height = 12;
-			Item.rare = ItemRarityID.Orange;
+			Item.rare = ItemRarityID.Quest;
 			Item.value = Item.sellPrice(0, 2); 
 		}
 		//控制物品在创意模式研究界面的分类
