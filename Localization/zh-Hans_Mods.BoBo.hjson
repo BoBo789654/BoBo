@@ -23,64 +23,6 @@ Configs: {
 		DisplayName: 饰品槽位设置
 	}
 
-	FierceExplosiveConfig: {
-		DisplayName: 激烈炸弹配置
-
-		Width: {
-			Label: 左右宽度
-			Tooltip: 炸弹清除区域的宽度（鼠标左右各一半）
-		}
-
-		PlatformSpacing: {
-			Label: 平台间隔
-			Tooltip: 平台之间的垂直间隔
-		}
-
-		ClearHeight: {
-			Label: 清除高度
-			Tooltip: 从鼠标点向上清除的高度
-		}
-
-		SlopeTypeSlide: {
-			Tooltip: 设置平台斜坡形态
-			Label: 斜坡类型
-		}
-
-		SlopeTypeSlider: {
-			Tooltip: 设置平台斜坡形态
-			Label: 斜坡类型
-		}
-	}
-
-	SlopeTypeEnum: {
-		Tooltip: ""
-
-		Solid: {
-			Label: 实心物块
-			Tooltip: ""
-		}
-
-		SolidDownLeft: {
-			Label: 左上斜坡
-			Tooltip: ""
-		}
-
-		SolidDownRight: {
-			Label: 右上斜坡
-			Tooltip: ""
-		}
-
-		SolidUpLeft: {
-			Label: 左下斜坡
-			Tooltip: ""
-		}
-
-		SolidUpRight: {
-			Label: 右下斜坡
-			Tooltip: ""
-		}
-	}
-
 	EvilCupConfig: {
 		DisplayName: 牺牲召唤栏
 
@@ -146,7 +88,6 @@ Projectiles: {
 	BubbleBurst.DisplayName: 弹幕
 	MagicalCircleProj.DisplayName: 弹幕
 	ThunderAccProj.DisplayName: 弹幕
-	FierceExplosiveProjectile.DisplayName: 弹幕
 	WormRay.DisplayName: 弹幕
 	WarningLine.DisplayName: 弹幕
 	BatA.DisplayName: 弹幕
@@ -578,16 +519,6 @@ Items: {
 			[c/8B0000:自身伤害增加20 + 牺牲召唤栏 * 3]
 			[c/8B0000:提升生命恢复15%]
 			[c/8B0000:鞭子长度与鞭子攻速随牺牲召唤栏数增加]
-			'''
-	}
-
-	FierceExplosive: {
-		DisplayName: 平台炸药
-		Tooltip:
-			'''
-			一个炸药，可以挖空区域创建平台，可以到模组配置处调整以下参数：
-			清除高度；左右宽度；平台间隔；平台样式
-
 			'''
 	}
 

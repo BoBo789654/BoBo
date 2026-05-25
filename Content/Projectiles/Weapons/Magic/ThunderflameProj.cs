@@ -263,12 +263,12 @@ namespace BoBo.Content.Projectiles.Weapons.Magic
 		}
 		private void CreateHitEffect(Vector2 position)//在指定位置创建闪电命中敌人的视觉特效
 		{
-			for (int i = 0; i < 5; i++)
-			{
-				Dust dust = Dust.NewDustDirect(position, 0, 0, DustID.Electric, 0f, 0f, 100, default, 1.5f);
-				dust.velocity = Main.rand.NextVector2Circular(3f, 3f);
-				dust.noGravity = true;
-			}
+			//for (int i = 0; i < 5; i++)
+			//{
+			//	Dust dust = Dust.NewDustDirect(position, 0, 0, DustID.Electric, 0f, 0f, 100, default, 1.5f);
+			//	dust.velocity = Main.rand.NextVector2Circular(3f, 3f);
+			//	dust.noGravity = true;
+			//}
 		}
 		public override void AI()
 		{

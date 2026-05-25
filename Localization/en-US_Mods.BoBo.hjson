@@ -23,64 +23,6 @@ Configs: {
 		DisplayName: Accessory Slot Config
 	}
 
-	FierceExplosiveConfig: {
-		DisplayName: 激烈炸弹配置
-
-		Width: {
-			Label: 左右宽度
-			Tooltip: 炸弹清除区域的宽度（鼠标左右各一半）
-		}
-
-		PlatformSpacing: {
-			Label: 平台间隔
-			Tooltip: 平台之间的垂直间隔
-		}
-
-		ClearHeight: {
-			Label: 清除高度
-			Tooltip: 从鼠标向上清除的高度
-		}
-
-		SlopeTypeSlide: {
-			Tooltip: 设置平台斜坡形态
-			Label: 斜坡类型
-		}
-
-		SlopeTypeSlider: {
-			Tooltip: 设置平台斜坡形态
-			Label: 斜坡类型
-		}
-	}
-
-	SlopeTypeEnum: {
-		Tooltip: ""
-
-		Solid: {
-			Label: 实心物块
-			Tooltip: ""
-		}
-
-		SolidDownLeft: {
-			Label: 左上斜坡
-			Tooltip: ""
-		}
-
-		SolidDownRight: {
-			Label: 右上斜坡
-			Tooltip: ""
-		}
-
-		SolidUpLeft: {
-			Label: 左下斜坡
-			Tooltip: ""
-		}
-
-		SolidUpRight: {
-			Label: 右下斜坡
-			Tooltip: ""
-		}
-	}
-
 	EvilCupConfig: {
 		DisplayName: Evil Cup Config
 
@@ -146,7 +88,6 @@ Projectiles: {
 	BubbleBurst.DisplayName: Bubble Burst
 	MagicalCircleProj.DisplayName: Magical Circle Proj
 	ThunderAccProj.DisplayName: Thunder Acc Proj
-	FierceExplosiveProjectile.DisplayName: Fierce Explosive Projectile
 	WormRay.DisplayName: Worm Ray
 	WarningLine.DisplayName: Warning Line
 	BatA.DisplayName: Bat A
@@ -470,11 +411,6 @@ Items: {
 
 	EvilCup: {
 		DisplayName: Evil Cup
-		Tooltip: ""
-	}
-
-	FierceExplosive: {
-		DisplayName: Fierce Explosive
 		Tooltip: ""
 	}
 
